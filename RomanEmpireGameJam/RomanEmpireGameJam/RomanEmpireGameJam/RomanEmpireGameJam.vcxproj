@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="AnimatedSpriteComponent.cpp" />
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="ApplicationAssetManager.cpp" />
+    <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="AssetFactory.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="BasicApp.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DefaultScene.cpp" />
+    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="FileHelper.cpp" />
+    <ClCompile Include="FrameRateTimer.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Log.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RenderableComponent.cpp" />
+    <ClCompile Include="RenderingSystem.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SoldierActor.cpp" />
+    <ClCompile Include="SpriteComponent.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureAssetFactory.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TransformComponent.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="AnimatedSpriteComponent.h" />
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="ApplicationAssetManager.h" />
+    <ClInclude Include="Asset.h" />
+    <ClInclude Include="AssetFactory.h" />
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="BasicApp.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="DefaultScene.h" />
+    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="FileHelper.h" />
+    <ClInclude Include="FilePaths.h" />
+    <ClInclude Include="FrameRateTimer.h" />
+    <ClInclude Include="InputKeys.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Intrinsics.h" />
+    <ClInclude Include="Log.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="PCH.h" />
+    <ClInclude Include="RenderableComponent.h" />
+    <ClInclude Include="RenderingSystem.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SoldierActor.h" />
+    <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureAssetFactory.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="World.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FD9EBDE0-E3B1-4AC2-A577-C4B45821EC1E}</ProjectGuid>
+    <RootNamespace>RomanEmpireGameJam</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)Additional\Include\SDL2_image-2.0.0\include;$(ProjectDir)Additional\Include\SDL-2.0.1;$(ProjectDir)Additional\Include\glm-0.9.5.4\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Additional\Lib\SDL2_image-2.0.0\lib\x86;$(ProjectDir)Additional\Lib\SDL-2.0.1\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)Additional\Include\glm-0.9.5.4\glm;$(ProjectDir)Additional\Include\SDL-2.0.1;$(ProjectDir)Additional\Include\SDL2_image-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Additional\Lib\SDL-2.0.1\x86;$(ProjectDir)Additional\Lib\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2Main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>SDL2.lib;SDL2Main.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

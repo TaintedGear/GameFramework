@@ -1,0 +1,7 @@
+<---------------------------------------------------->
+Verbosity is set to Low
+<---------------------------------------------------->
+High: Created Renderer Successfully
+Low: Created Asset: Helmet.png
+Low: Created Asset: Sheild.png
+Low: Created Asset: sword.png

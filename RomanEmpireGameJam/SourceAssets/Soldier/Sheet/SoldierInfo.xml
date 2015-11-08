@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:f483c616fbeec603e0be8929ecf23b0a:b287ba2cdf793cdd23cb043300878329:e55c43e889873d1872b10e950ff4b300$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="Soldier.bmp" width="2015" height="332">
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_000.png" x="2" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_001.png" x="2" y="70" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_002.png" x="54" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_003.png" x="2" y="138" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_004.png" x="54" y="70" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_005.png" x="106" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_006.png" x="2" y="206" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_007.png" x="54" y="138" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_008.png" x="106" y="70" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_009.png" x="158" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_010.png" x="54" y="206" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_011.png" x="2" y="274" w="66" h="50" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_012.png" x="106" y="138" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_013.png" x="158" y="70" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_014.png" x="210" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_015.png" x="106" y="206" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_016.png" x="70" y="274" w="66" h="50" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_017.png" x="158" y="138" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_018.png" x="210" y="70" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_019.png" x="262" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_020.png" x="158" y="206" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_021.png" x="138" y="274" w="66" h="50" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_022.png" x="210" y="138" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_023.png" x="262" y="70" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_024.png" x="314" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_025.png" x="210" y="206" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_026.png" x="262" y="138" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_027.png" x="314" y="70" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_028.png" x="366" y="2" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_029.png" x="262" y="206" w="50" h="66" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Attack_Soldier/Attack_Soldier_030.png" x="206" y="274" w="66" h="50" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_000.png" x="470" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_001.png" x="520" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_002.png" x="570" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_003.png" x="620" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_004.png" x="670" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_005.png" x="720" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_006.png" x="770" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_007.png" x="820" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_008.png" x="870" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_009.png" x="870" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_010.png" x="870" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_011.png" x="870" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_012.png" x="920" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_013.png" x="970" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Blocked_Soldier/Defend_Blocked_Soldier_014.png" x="1020" y="101" w="48" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_000.png" x="1070" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_001.png" x="1120" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_002.png" x="1170" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_003.png" x="1220" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_004.png" x="1270" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_005.png" x="1320" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_006.png" x="1370" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_007.png" x="1420" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_008.png" x="1470" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_009.png" x="1520" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_010.png" x="1570" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_011.png" x="1620" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_012.png" x="1670" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_013.png" x="1720" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_014.png" x="1770" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_015.png" x="1820" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_016.png" x="1870" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_017.png" x="1920" y="101" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_018.png" x="365" y="175" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_019.png" x="1934" y="151" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_020.png" x="466" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_021.png" x="516" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_022.png" x="566" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_023.png" x="616" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_024.png" x="666" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_025.png" x="716" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_026.png" x="766" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_027.png" x="816" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_028.png" x="866" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_029.png" x="916" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_030.png" x="966" y="194" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_031.png" x="1016" y="195" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_032.png" x="1066" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_033.png" x="1116" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_034.png" x="1166" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_035.png" x="1216" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_036.png" x="1266" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_037.png" x="1316" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_038.png" x="1366" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_039.png" x="1416" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_040.png" x="1466" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_041.png" x="1516" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_042.png" x="1566" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_043.png" x="1616" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_044.png" x="1666" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_045.png" x="1716" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_046.png" x="1766" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_047.png" x="1816" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_048.png" x="1866" y="196" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_049.png" x="1916" y="201" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_050.png" x="373" y="271" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_051.png" x="461" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_052.png" x="511" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_053.png" x="561" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_054.png" x="611" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_055.png" x="661" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_056.png" x="711" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_057.png" x="761" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_058.png" x="811" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_059.png" x="861" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_060.png" x="911" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Idle_Soldier/Defend_Idle_Soldier_061.png" x="961" y="244" w="48" h="48" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_000.png" x="314" y="138" w="49" h="58" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_001.png" x="366" y="70" w="49" h="58" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_002.png" x="418" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_003.png" x="314" y="198" w="49" h="58" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_004.png" x="478" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_005.png" x="538" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_006.png" x="598" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_007.png" x="658" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_008.png" x="718" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_009.png" x="778" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_010.png" x="838" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_011.png" x="898" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_012.png" x="958" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_013.png" x="1018" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Into_Soldier/Defend_Into_Soldier_014.png" x="1078" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_000.png" x="1138" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_001.png" x="1198" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_002.png" x="1258" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_003.png" x="1318" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_004.png" x="1378" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_005.png" x="1438" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_006.png" x="1498" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_007.png" x="1558" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_008.png" x="1618" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_009.png" x="1678" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_010.png" x="1738" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_011.png" x="1798" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_012.png" x="1858" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_013.png" x="1918" y="2" w="58" h="49" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Outof_Soldier/Defend_Outof_Soldier_014.png" x="322" y="258" w="49" h="58" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_000.png" x="274" y="274" w="46" h="51" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_001.png" x="418" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_002.png" x="471" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_003.png" x="524" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_004.png" x="577" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_005.png" x="630" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_006.png" x="683" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_007.png" x="736" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_008.png" x="789" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_009.png" x="842" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_010.png" x="895" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_011.png" x="948" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_012.png" x="1001" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_013.png" x="1054" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_014.png" x="1107" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_015.png" x="1160" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_016.png" x="1213" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_017.png" x="1266" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_018.png" x="1319" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_019.png" x="1372" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_020.png" x="1425" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_021.png" x="1478" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_022.png" x="1531" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_023.png" x="1584" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_024.png" x="1637" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_025.png" x="1690" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_026.png" x="1743" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_027.png" x="1796" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_028.png" x="1849" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_029.png" x="1902" y="53" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Defend_Walk_Soldier/Defend_Walk_Soldier_030.png" x="417" y="101" w="51" h="46" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_000.png" x="1029" y="149" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_001.png" x="1955" y="53" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_002.png" x="1970" y="99" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_003.png" x="1966" y="201" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_004.png" x="373" y="225" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_005.png" x="423" y="239" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_006.png" x="423" y="285" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_007.png" x="461" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_008.png" x="507" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_009.png" x="553" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_010.png" x="599" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_011.png" x="645" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_012.png" x="691" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_013.png" x="737" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_014.png" x="783" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_015.png" x="829" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_016.png" x="875" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_017.png" x="921" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_018.png" x="967" y="294" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_019.png" x="1011" y="245" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_020.png" x="1057" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_021.png" x="1103" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_022.png" x="1149" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_023.png" x="1195" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_024.png" x="1241" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_025.png" x="1287" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_026.png" x="1333" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_027.png" x="1379" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_028.png" x="1425" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_029.png" x="1471" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_030.png" x="1517" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_031.png" x="1563" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_032.png" x="1609" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_033.png" x="1655" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_034.png" x="1701" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_035.png" x="1747" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_036.png" x="1793" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_037.png" x="1839" y="246" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_038.png" x="1013" y="283" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_039.png" x="1051" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_040.png" x="1097" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_041.png" x="1143" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_042.png" x="1189" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_043.png" x="1235" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_044.png" x="1281" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_045.png" x="1327" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_046.png" x="1373" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_047.png" x="1419" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_048.png" x="1465" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_049.png" x="1511" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_050.png" x="1557" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_051.png" x="1603" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_052.png" x="1649" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_053.png" x="1695" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_054.png" x="1741" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_055.png" x="1787" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_056.png" x="1833" y="284" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_057.png" x="1885" y="251" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_058.png" x="1931" y="251" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_059.png" x="1977" y="247" w="36" h="44" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_060.png" x="1879" y="289" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Idle_Soldier/Idle_Soldier_061.png" x="1925" y="289" w="44" h="36" pX="0.5" pY="0.5"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_000.png" x="366" y="130" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_001.png" x="417" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_002.png" x="468" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_003.png" x="519" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_004.png" x="570" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_005.png" x="621" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_006.png" x="672" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_007.png" x="723" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_008.png" x="774" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_009.png" x="825" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_010.png" x="876" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_011.png" x="927" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_012.png" x="978" y="149" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_013.png" x="1067" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_014.png" x="1118" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_015.png" x="1169" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_016.png" x="1220" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_017.png" x="1271" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_018.png" x="1322" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_019.png" x="1373" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_020.png" x="1424" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_021.png" x="1475" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_022.png" x="1526" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_023.png" x="1577" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_024.png" x="1628" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_025.png" x="1679" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_026.png" x="1730" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_027.png" x="1781" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_028.png" x="1832" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_029.png" x="1883" y="151" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+    <sprite n="AN_Walk_Soldier/Walk_Soldier_030.png" x="415" y="194" w="49" h="43" pX="0.5" pY="0.5" r="y"/>
+</TextureAtlas>
