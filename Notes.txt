@@ -1,0 +1,35 @@
+TODO: 
+AssetManager
+- Handle asset release on ref_count <= 1
+- (How do i handle on shutdown of factory, when the ref_count > 1, Could cause crashes if its trying to be used but we release the asset to early?)
+- If we release the factory and it still has references with ref count > 1 do we transfer the responsibility to the owner?
+- CACHE ALL THE FILENAMES IN THE ASSET FOLDER - INSTEAD OF READING TO DISK?
+- CACHE ALLOCATE THE MEMORY FOR ASSETS?
+
+(EntityFactory) - (Observer pattern) / (Proxy) / (Key Pattern) Entity holds a bitKey for its components (Systems go through them and see if its
+valid to do operations on it)
+- ActorFactory + ComponentFactory
+- (World Entity Factory), Allows for persistance actors to live across multiple levels;
+- (Level Entity Factory), Allows for local level actors 
+
+System create a component mapper?
+
+Systems
+- Redefine how they work!
+
+
+MOVE AWAY FROM ACTOR - USE ENTITY INSTEAD!
+
+Entity needs to refer to as a key of its components
+http://gamedev.stackexchange.com/questions/31473/role-of-systems-in-entity-systems-architecture
+
+EntityFactory - poops out proxy interfaces to the people who want to spawn entities (PROXY PATTERN)
+EntityFactory -> InterfaceFactory(World) -> InterfaceFactory(Level) -> InterfaceFactory(Entities); 
+
+Store as a multimap with entityKey? (Allows systems to quickly retreive all the entities they care about when needing to update
+
+Return the assetHandle created as a sharedPtr
+
+(To stop passing the factory down the factory just updates through its proxies and sees if any of them are pending an entity) (MAY NOT LIKE THIS IDEA COS NOW WE HAVE TO WAIT TO RETREIVE THE ENTITY BLURG)
+
+(Still allows for rendering, movement etc to be done in systems) and allows the gamePlay to be a slightly lower level then those core systems)
