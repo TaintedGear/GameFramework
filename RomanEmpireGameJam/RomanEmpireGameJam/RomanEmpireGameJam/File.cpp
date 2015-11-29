@@ -10,12 +10,14 @@ File::~File()
 {
 }
 
+// Will open an existing file, however if the file does not exist it will create it
+//  (Maybe make a separate func to create file)?
 bool File::Open(const std::string& pFilepath, File::FileMode pFilemode)
 {
 	bool retVal = true;
 
 	char openMode = (char)pFilemode;
-
+	
 	mFilepath = pFilepath;
 	mFileMode = pFilemode;
 	mFile.open(pFilepath, pFilemode);

@@ -11,16 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AnimatedSpriteComponent.cpp" />
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="ApplicationAssetManager.cpp" />
+    <ClCompile Include="ApplicationAssetCache.cpp" />
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="AssetFactory.cpp" />
-    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="AssetFinder.cpp" />
+    <ClCompile Include="AssetCache.cpp" />
     <ClCompile Include="BasicApp.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DefaultScene.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="FileHelper.cpp" />
@@ -28,11 +30,12 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="RenderableComponent.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SoldierActor.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
+    <ClCompile Include="System.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureAssetFactory.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -41,16 +44,18 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimatedSpriteComponent.h" />
     <ClInclude Include="Application.h" />
-    <ClInclude Include="ApplicationAssetManager.h" />
+    <ClInclude Include="ApplicationAssetCache.h" />
     <ClInclude Include="Asset.h" />
     <ClInclude Include="AssetFactory.h" />
-    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="AssetFinder.h" />
+    <ClInclude Include="AssetCache.h" />
     <ClInclude Include="BasicApp.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DefaultScene.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FileHelper.h" />
@@ -61,12 +66,13 @@
     <ClInclude Include="Intrinsics.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="PCH.h" />
     <ClInclude Include="RenderableComponent.h" />
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SoldierActor.h" />
     <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="System.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureAssetFactory.h" />
     <ClInclude Include="Timer.h" />

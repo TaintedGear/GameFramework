@@ -18,6 +18,7 @@ Log::Log()
 			FilePaths::FILE_PATH_LOG());
 	}
 
+	// Will create the log file if it doesnt exist
 	std::string logFilePath = FilePaths::PROJECT_PATH() +
 		FilePaths::FILE_PATH_LOG() + "Log.txt";
 	mLogFile.Open(logFilePath, File::FileMode::READ_WRITE_NEW);

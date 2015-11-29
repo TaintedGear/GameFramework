@@ -30,6 +30,5 @@ protected:
 	std::string mAssetFileName;
 	std::string mAssetFilePath;
 
-
 };
 

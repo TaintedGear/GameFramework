@@ -3,5 +3,10 @@ Verbosity is set to Low
 <---------------------------------------------------->
 High: Created Renderer Successfully
 Low: Created Asset: Helmet.png
+Low: Got asset Helmet.png
 Low: Created Asset: Sheild.png
+Low: Got asset Sheild.png
 Low: Created Asset: sword.png
+Low: Got asset sword.png
+High: Asset Factory for class Asset is not registered for this asset manager
+High: Failed to get asset TEST of class Asset

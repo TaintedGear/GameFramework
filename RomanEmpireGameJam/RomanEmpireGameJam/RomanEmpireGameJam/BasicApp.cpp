@@ -49,9 +49,9 @@ bool BasicApp::Initialize()
 		return false;
 	}
 
-	if (!mAssetManager->InitializeAssetManager(mRenderingSystem))
+	if (!mAssetManager->InitializeAssetCache(mRenderingSystem))
 	{
-		Log::GetLog().LogCriticalMsg("Failed to init the application asset manager!");
+		Log::GetLog().LogCriticalMsg("Failed to initialize asset manager");
 		return false;
 	}
 
@@ -74,6 +74,8 @@ bool BasicApp::Initialize()
 	mAssetManager->GetAsset<Texture>("Helmet.png", test);
 	mAssetManager->GetAsset<Texture>("Sheild.png", test);
 	mAssetManager->GetAsset<Texture>("sword.png", test);
+
+	mAssetManager->GetAsset<Asset>("TEST", test);
 
 	return true;
 }

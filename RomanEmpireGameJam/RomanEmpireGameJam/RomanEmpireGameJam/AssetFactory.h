@@ -4,6 +4,22 @@
 #include "Log.h"
 #include "Asset.h"
 #include "RenderingSystem.h"
+#include "System.h"
+
+//TODO: Add option so that when ref count is <= 1 then we call the unload func unless its set to stay is false
+// Resources can be loaded with a stay bool so they are not unloaded when they are <= 1 ref count
+// Split the storing of the resources into a new class that holds the object pools? (Is this a big deal?)
+// Factory loaders are responsable to hold the weak ref to systems that require to create the AssetHandles +
+// loading and unloading the resource
+
+// This is to be inherited from and the constructor will take the relevant systems
+// that are required to initalize a asset factory
+// For example: Texture will need access to RenderingSystem so that will be passed through with this struct
+class AssetFactoryLoader
+{
+public:
+	AssetFactoryLoader() { };
+};
 
 class AssetFactory
 {
@@ -11,7 +27,8 @@ public:
 	AssetFactory(const std::type_index& pAssetType);
 	virtual ~AssetFactory();
 
-	bool InitializeFactory(std::shared_ptr<class RenderingSystem> pRenderingSystem);
+	// 
+	virtual bool InitializeFactory(AssetFactoryLoader& pAssetFactoryLoader);
 	void ShutdownFactory();
 
 	// Get the asset type that this factory is responsible for
@@ -36,9 +53,6 @@ protected:
 	
 	// Add a file extension that is used for this asset type 
 	void AddExceptedFileExstention(const std::string& pFileExtension);
-
-	//Ref to the renderer
-	std::shared_ptr<class RenderingSystem> mRenderer;
 
 private:
 	// Check if the file name extension is include in the accepted list

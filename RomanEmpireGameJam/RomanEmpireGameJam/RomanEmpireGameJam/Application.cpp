@@ -35,7 +35,7 @@ mWindow(nullptr)
 		Log::GetLog().LogCriticalMsg("Failed to allocate the rendering system");
 	}
 
-	mAssetManager = std::make_shared<ApplicationAssetManager>();
+	mAssetManager = std::make_shared<ApplicationAssetCache>();
 	if (mAssetManager == nullptr)
 	{
 		Log::GetLog().LogCriticalMsg("Failed to allocate the asset manager");

@@ -9,15 +9,15 @@
 
 //Collection of factories that allow them to map their corresponding type
 
-class AssetManager
+class AssetCache
 {
 public:
-	AssetManager();
-	virtual ~AssetManager();
+	AssetCache();
+	virtual ~AssetCache();
 
 	//Maybe move this dependency of the renderer to child so that if they need it then can get it themselves (Maybe?)
-	virtual bool InitializeAssetManager(std::shared_ptr<class RenderingSystem> pRenderer);
-	virtual void ShutdownAssetManager();
+	virtual bool InitializeAssetCache();
+	virtual void ShutdownAssetCache();
 	
 	bool DoesFactoryExistForAsset(const std::type_index& pTypeIndex) const;
 
@@ -31,7 +31,7 @@ public:
 	// Returns:   bool
 	//************************************
 	template< class F >
-	bool RegisterFactory();
+	bool RegisterFactory(AssetFactoryLoader& pAssetFactoryLoader);
 	
 	//************************************
 	// Method:    DoesFactoryExistForAsset
@@ -52,10 +52,6 @@ public:
 	template< class I >
 	std::shared_ptr<I> FindAssetInFactory( const std::string& pFilename);
 
-protected:
-	// Allow the children to register a bunch of default factories on init
-		virtual bool RegisterDefaultFactories();
-
 private:
 	// Asset Factory map with a key of the asset type index to determine what factory to use
 	std::map< std::type_index, std::shared_ptr<class AssetFactory> > mAssetFactoryMap;
@@ -68,7 +64,7 @@ private:
 // AssetManager::DoesFactoryExistForAsset				
 //------------------------------------------//
 template< class C >
-bool AssetManager::DoesFactoryExistForAsset() const
+bool AssetCache::DoesFactoryExistForAsset() const
 {
 	return (mAssetFactoryMap.count(typeid(C)) > 0);
 }
@@ -77,7 +73,7 @@ bool AssetManager::DoesFactoryExistForAsset() const
 // AssetManager::RegisterFactory				
 //------------------------------------------//
 template< class F >
-bool AssetManager::RegisterFactory()
+bool AssetCache::RegisterFactory(AssetFactoryLoader& pAssetFactoryLoader)
 {
 	// Create the new registered factory
 	std::shared_ptr<AssetFactory> newFactory = nullptr;
@@ -90,7 +86,7 @@ bool AssetManager::RegisterFactory()
 		return false;
 	}
 
-	if (!newFactory->InitializeFactory(mRenderingSystem))
+	if (!newFactory->InitializeFactory(pAssetFactoryLoader))
 	{
 		std::string failureMsg = BuildStringClass(typeid(F), "Failed to Initialize ", " In asset manager!");
 		Log::GetLog().LogHighMsg(failureMsg);
@@ -124,17 +120,27 @@ bool AssetManager::RegisterFactory()
 //------------------------------------------//
 template< class P >
 AssetHandle<P>
-AssetManager::GetAsset(const std::string& pFileName, bool& pReturn)
+AssetCache::GetAsset(const std::string& pFileName, bool& pReturn)
 {
 	AssetHandle<P> foundAssetHandle{ nullptr };
 
 	//Find asset
 	std::shared_ptr<Asset> foundAsset = nullptr;
-	if (FindAssetInFactory<P>(pFileName))
+	if (!FindAssetInFactory<P>(pFileName))
 	{
+		Log::GetLog().LogHighMsg(
+			"Failed to get asset " +
+			pFileName +
+			" of " +
+			BuildStringClass(typeid(P)));
+
 		pReturn = false;
+		return nullptr;
 	}
 
+	Log::GetLog().LogLowMsg("Got asset " + pFileName);
+	
+	pReturn = true;
 	return foundAssetHandle;
 }
 
@@ -143,11 +149,12 @@ AssetManager::GetAsset(const std::string& pFileName, bool& pReturn)
 //------------------------------------------//
 template< class I >
 std::shared_ptr<I>
-AssetManager::FindAssetInFactory(const std::string& pFilename)
+AssetCache::FindAssetInFactory(const std::string& pFilename)
 {
 	std::type_index assetType = typeid(I);
 	if (!DoesFactoryExistForAsset(assetType))
 	{
+		Log::GetLog().LogHighMsg("Asset Factory for " + BuildStringClass(assetType) + " is not registered for this asset manager");
 		return nullptr;
 	}
 
@@ -155,12 +162,14 @@ AssetManager::FindAssetInFactory(const std::string& pFilename)
 	std::shared_ptr<AssetFactory> factoryForThisAsset = mAssetFactoryMap[assetType];
 	if (factoryForThisAsset == nullptr)
 	{
+		Log::GetLog().LogHighMsg("Asset Factory for " + BuildStringClass(assetType) + " is null for this asset manager");
 		return nullptr;
 	}
 
+	// Call the factorys get asset function
 	std::shared_ptr<I> foundAsset = nullptr;
-	//Call get asset funct
 	foundAsset = factoryForThisAsset->GetAsset<I>(pFilename);
+
 	//If this returned null then we still get the same result to the caller
 	return foundAsset;
 }

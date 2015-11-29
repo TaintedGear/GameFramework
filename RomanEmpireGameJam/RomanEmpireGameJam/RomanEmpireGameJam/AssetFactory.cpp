@@ -7,7 +7,6 @@
 AssetFactory::AssetFactory(const std::type_index& pAssetType)
 	:
 mAssetType(pAssetType)
-, mRenderer(nullptr)
 {
 }
 
@@ -49,21 +48,6 @@ bool AssetFactory::CheckFilenameIsValidWithFileExtensions(const std::string& pFi
 
 	Log::GetLog().LogHighMsg( extension + " is not in the acceptedExtension list for this asset factory!" );
 	return false;
-}
-
-//------------------------------------------//
-// AssetFactory::InitializeFactory				
-//------------------------------------------//
-bool AssetFactory::InitializeFactory(std::shared_ptr<RenderingSystem> pRenderingSystem)
-{
-	if (pRenderingSystem == nullptr)
-	{
-		Log::GetLog().LogCriticalMsg("Rendering system was null when init asset factory!");
-		return false;
-	}
-
-	mRenderer = pRenderingSystem;
-	return true;
 }
 
 //------------------------------------------//
@@ -119,6 +103,14 @@ bool AssetFactory::GetAssetFilepath(const std::string& pFilename, std::string& p
 void AssetFactory::ShutdownFactory()
 {
 	//Go through each loaded asset and release them (If any still have ref count then handle differently?)
+}
+
+//------------------------------------------//
+// AssetFactory::InitializeFactory				
+//------------------------------------------//
+bool AssetFactory::InitializeFactory(AssetFactoryLoader& pAssetFactoryLoader)
+{
+	return true;
 }
 
 

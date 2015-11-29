@@ -4,7 +4,32 @@ AssetManager
 - (How do i handle on shutdown of factory, when the ref_count > 1, Could cause crashes if its trying to be used but we release the asset to early?)
 - If we release the factory and it still has references with ref count > 1 do we transfer the responsibility to the owner?
 - CACHE ALL THE FILENAMES IN THE ASSET FOLDER - INSTEAD OF READING TO DISK?
-- CACHE ALLOCATE THE MEMORY FOR ASSETS?
+- CACHE ALLOCATE THE MEMORY FOR ASSETS? -YES (Pg. 291)
+- Handle assets with file paths not file names ( Change the finding of the file to be recursive through child directories )!
+- Add a load and stay feature to the asset manager, so that they are kept for the lifetime of the app, unless called otherwise
+- Add debug to print all assets currently loaded or stored
+- Change assets so we create them but dont load until told?
+- Change how we pass through systems to load the asset
+- Asset manager holds the object pool of the resources and not the factories? Maybe? Not sure atm, as its not currently a problem but splits up the responasbilities of the factory
+- Assets stored as weak ptrs, and returns shared ptrs with custom allocation and deleter functions to unload and load the resource. This allows it to be unloaded if the object is destroyed, but still have a weak reference to the non existing object in the map
+so we dont have to keep going through the map and checkign if the ref count is <= 1
+- Create different AssetManagers for resource types
+- Change AssetFactor::InitializeFactory and the FactoryLoaders to take a system class and have the system class have a generic load virtual function to remove the downcasting now needed in child factories
+
+(Asset management broken down to)
+Cache: AssetCache - Holds the loaders and AssetPools - Provides interface to assets
+Pool: AssetPool - TODO; Holds the actual assets 
+Proxy: AssetFinder - Proxy to other classes to retreive assets from the asset cache
+Loaders: AssetFactory - Creates / Loads the assets and spits them out to the relevant pool determined by the cache.
+
+MemoryManager
+-Create a stack allocator (Might be a vector)
+-Pool allocators
+-Double ended stack allocator
+- Chunky resource allocators (pg 293)
+
+FileManager
+- Add async loading of files
 
 (EntityFactory) - (Observer pattern) / (Proxy) / (Key Pattern) Entity holds a bitKey for its components (Systems go through them and see if its
 valid to do operations on it)
@@ -26,7 +51,7 @@ http://gamedev.stackexchange.com/questions/31473/role-of-systems-in-entity-syste
 EntityFactory - poops out proxy interfaces to the people who want to spawn entities (PROXY PATTERN)
 EntityFactory -> InterfaceFactory(World) -> InterfaceFactory(Level) -> InterfaceFactory(Entities); 
 
-Store as a multimap with entityKey? (Allows systems to quickly retreive all the entities they care about when needing to update
+Store as a multimap with entityKey? (Allows systems to quickly retreive all the entities they care about when needing to update ( Or do we just got with 0(N) approach?)- This makes it simplier when we get to the adding and removing of components dynamically
 
 Return the assetHandle created as a sharedPtr
 

@@ -49,17 +49,41 @@
     <Filter Include="Header Files\Asset\AssetFactory">
       <UniqueIdentifier>{fd647e22-6dd7-49e9-a5b4-f8ea0945d5a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Asset\AssetManager">
-      <UniqueIdentifier>{2c349d7a-9b6e-4d2c-ad4f-ba25d26ad280}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Asset">
       <UniqueIdentifier>{c4925811-5d60-43bf-aed6-889e20a672d0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Asset\AssetFactory">
       <UniqueIdentifier>{7fdd8cb7-c551-468d-acda-9cbbb234589a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Asset\AssetManager">
+    <Filter Include="Header Files\Memory">
+      <UniqueIdentifier>{0f67a0a7-2e7f-4ac1-b8d5-748497266bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset\AssetCache">
+      <UniqueIdentifier>{2c349d7a-9b6e-4d2c-ad4f-ba25d26ad280}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset\AssetCache">
       <UniqueIdentifier>{079666cb-b8a1-44db-9b92-9cc67b112526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset\AssetProxy">
+      <UniqueIdentifier>{78f7e1f0-9907-4660-b62e-3ebe17dd83bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset\AssetProxy">
+      <UniqueIdentifier>{ec2156f4-ec53-449e-a70d-f86e1d95cd92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset\AssetTypes">
+      <UniqueIdentifier>{752c62c6-a5f6-4c94-9189-cd721c02c210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset\AssetTypes">
+      <UniqueIdentifier>{b62d62d9-0ab0-4cb7-8c90-6e0fe82b5244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Memory">
+      <UniqueIdentifier>{bb8494ec-b36f-48b5-b07b-b66b6bcddc18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{2d7e0f28-717d-490f-956f-0d1d7fd03de7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{a5e655cc-8615-4f84-8bd4-cd2ce8112b2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +93,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Source Files\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="RenderableComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -80,9 +101,6 @@
     </ClCompile>
     <ClCompile Include="AnimatedSpriteComponent.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="SoldierActor.cpp">
-      <Filter>Source Files\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Scene</Filter>
@@ -132,28 +150,40 @@
     <ClCompile Include="TextureAssetFactory.cpp">
       <Filter>Source Files\Asset\AssetFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Asset</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetManager.cpp">
-      <Filter>Source Files\Asset\AssetManager</Filter>
-    </ClCompile>
     <ClCompile Include="AssetFactory.cpp">
       <Filter>Source Files\Asset\AssetFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Asset.cpp">
-      <Filter>Source Files\Asset</Filter>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationAssetManager.cpp">
-      <Filter>Source Files\Asset\AssetManager</Filter>
+    <ClCompile Include="EntityFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationAssetCache.cpp">
+      <Filter>Source Files\Asset\AssetCache</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetCache.cpp">
+      <Filter>Source Files\Asset\AssetCache</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetFinder.cpp">
+      <Filter>Source Files\Asset\AssetProxy</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Asset\AssetTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>Source Files\Asset\AssetTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectPool.cpp">
+      <Filter>Source Files\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Header Files\Actor</Filter>
     </ClInclude>
     <ClInclude Include="RenderableComponent.h">
       <Filter>Header Files\Components</Filter>
@@ -163,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="AnimatedSpriteComponent.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SoldierActor.h">
-      <Filter>Header Files\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files\Scene</Filter>
@@ -221,29 +248,44 @@
     <ClInclude Include="World.h">
       <Filter>Header Files\World</Filter>
     </ClInclude>
-    <ClInclude Include="FilePaths.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FileHelper.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Asset.h">
-      <Filter>Header Files\Asset</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files\Asset</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplicationAssetManager.h">
-      <Filter>Header Files\Asset\AssetManager</Filter>
     </ClInclude>
     <ClInclude Include="TextureAssetFactory.h">
       <Filter>Header Files\Asset\AssetFactory</Filter>
     </ClInclude>
-    <ClInclude Include="AssetManager.h">
-      <Filter>Header Files\Asset\AssetManager</Filter>
-    </ClInclude>
     <ClInclude Include="AssetFactory.h">
       <Filter>Header Files\Asset\AssetFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationAssetCache.h">
+      <Filter>Header Files\Asset\AssetCache</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetCache.h">
+      <Filter>Header Files\Asset\AssetCache</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetFinder.h">
+      <Filter>Header Files\Asset\AssetProxy</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
+      <Filter>Header Files\Asset\AssetTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\Asset\AssetTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>Header Files\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePaths.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

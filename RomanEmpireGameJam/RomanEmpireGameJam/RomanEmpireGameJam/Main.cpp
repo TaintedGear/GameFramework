@@ -4,9 +4,6 @@
 #include "Application.h"
 #include "Log.h"
 
-#include "Actor.h"
-
-
 int main(int argc, char* args[])
 {
 	//Create the only instance of the App
