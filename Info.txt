@@ -1,1 +1,3 @@
-sdsds
+Started as a game jam idea - Hence the weird folder and soloution name.
+
+Turned into wanting to build a framework to build future game jams easier from scratch with my own framework instead.
