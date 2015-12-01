@@ -12,24 +12,23 @@
 // Factory loaders are responsable to hold the weak ref to systems that require to create the AssetHandles +
 // loading and unloading the resource
 
-// This is to be inherited from and the constructor will take the relevant systems
-// that are required to initalize a asset factory
-// For example: Texture will need access to RenderingSystem so that will be passed through with this struct
-class AssetFactoryLoader
+// This classed is to be inherited from, allows injection of systems into the different asset loaders
+// To allow for assets to be loaded properly with the correct systems.
+class AssetLoaderInjector
 {
 public:
-	AssetFactoryLoader() { };
+	AssetLoaderInjector() { };
 };
 
-class AssetFactory
+class AssetLoader
 {
 public:
-	AssetFactory(const std::type_index& pAssetType);
-	virtual ~AssetFactory();
+	AssetLoader(const std::type_index& pAssetType);
+	virtual ~AssetLoader();
 
 	// 
-	virtual bool InitializeFactory(AssetFactoryLoader& pAssetFactoryLoader);
-	void ShutdownFactory();
+	virtual bool InitializeLoader(AssetLoaderInjector& pAssetLoaderInjector);
+	void ShutdownLoader();
 
 	// Get the asset type that this factory is responsible for
 	std::type_index GetAssetType() const { return mAssetType; }
@@ -80,7 +79,7 @@ private:
 // AssetFactory::GetAsset				
 //------------------------------------------//
 template< class I >
-std::shared_ptr<I> AssetFactory::GetAsset(const std::string& pFilename)
+std::shared_ptr<I> AssetLoader::GetAsset(const std::string& pFilename)
 {
 	//Check to make sure the template type is the same as the one we are handling
 	std::type_index templatedType = typeid(I);

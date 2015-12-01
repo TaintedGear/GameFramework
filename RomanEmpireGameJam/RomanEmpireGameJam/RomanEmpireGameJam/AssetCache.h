@@ -2,7 +2,7 @@
 
 #include "PCH.h"
 #include "Log.h"
-#include "AssetFactory.h"
+#include "AssetLoader.h"
 #include "Asset.h"
 #include "Intrinsics.h"
 #include "RenderingSystem.h"
@@ -19,7 +19,7 @@ public:
 	virtual bool InitializeAssetCache();
 	virtual void ShutdownAssetCache();
 	
-	bool DoesFactoryExistForAsset(const std::type_index& pTypeIndex) const;
+	bool DoesLoaderExistForAsset(const std::type_index& pTypeIndex) const;
 
 //--------------------------------------------
 //	Template funcs - Definition
@@ -31,14 +31,14 @@ public:
 	// Returns:   bool
 	//************************************
 	template< class F >
-	bool RegisterFactory(AssetFactoryLoader& pAssetFactoryLoader);
+	bool RegisterLoader(AssetLoaderInjector& pAssetLoaderInjector);
 	
 	//************************************
 	// Method:    DoesFactoryExistForAsset
 	// Returns:   bool
 	//************************************
 	template< class C >
-	bool DoesFactoryExistForAsset() const;
+	bool DoesLoaderExistForAsset() const;
 
 	//------------------------------------------//
 	// AssetManager::GetAsset				
@@ -50,11 +50,11 @@ public:
 	// FindAssetInFactory				
 	//------------------------------------------//
 	template< class I >
-	std::shared_ptr<I> FindAssetInFactory( const std::string& pFilename);
+	std::shared_ptr<I> FindAssetInLoader( const std::string& pFilename);
 
 private:
 	// Asset Factory map with a key of the asset type index to determine what factory to use
-	std::map< std::type_index, std::shared_ptr<class AssetFactory> > mAssetFactoryMap;
+	std::map< std::type_index, std::shared_ptr<class AssetLoader> > mAssetLoaderMap;
 
 	// Ref to the rendering system to pass down to factories
 	std::shared_ptr<class RenderingSystem> mRenderingSystem;
@@ -64,19 +64,19 @@ private:
 // AssetManager::DoesFactoryExistForAsset				
 //------------------------------------------//
 template< class C >
-bool AssetCache::DoesFactoryExistForAsset() const
+bool AssetCache::DoesLoaderExistForAsset() const
 {
-	return (mAssetFactoryMap.count(typeid(C)) > 0);
+	return (mAssetLoaderMap.count(typeid(C)) > 0);
 }
 
 //------------------------------------------//
 // AssetManager::RegisterFactory				
 //------------------------------------------//
 template< class F >
-bool AssetCache::RegisterFactory(AssetFactoryLoader& pAssetFactoryLoader)
+bool AssetCache::RegisterLoader(AssetLoaderInjector& pAssetLoaderInjector)
 {
 	// Create the new registered factory
-	std::shared_ptr<AssetFactory> newFactory = nullptr;
+	std::shared_ptr<AssetLoader> newFactory = nullptr;
 	newFactory = std::make_shared<F>();
 
 	if (newFactory == nullptr)
@@ -86,7 +86,7 @@ bool AssetCache::RegisterFactory(AssetFactoryLoader& pAssetFactoryLoader)
 		return false;
 	}
 
-	if (!newFactory->InitializeFactory(pAssetFactoryLoader))
+	if (!newFactory->InitializeLoader(pAssetLoaderInjector))
 	{
 		std::string failureMsg = BuildStringClass(typeid(F), "Failed to Initialize ", " In asset manager!");
 		Log::GetLog().LogHighMsg(failureMsg);
@@ -97,14 +97,14 @@ bool AssetCache::RegisterFactory(AssetFactoryLoader& pAssetFactoryLoader)
 	std::type_index factoryAssetType = newFactory->GetAssetType();
 
 	// Store in the map with the relevant asset type - if false then we already have it
-	if (!mAssetFactoryMap.emplace(factoryAssetType, newFactory).second)
+	if (!mAssetLoaderMap.emplace(factoryAssetType, newFactory).second)
 	{
 		std::string warningMsg = BuildStringClass(typeid(F), "Factory ", " is already registered!");
 		Log::GetLog().LogHighMsg(warningMsg);
 	}
 
 	// Make sure we successfully stored the object into the factory map
-	if (mAssetFactoryMap[factoryAssetType] == nullptr)
+	if (mAssetLoaderMap[factoryAssetType] == nullptr)
 	{
 		std::string failureMsg = BuildStringClass(typeid(F), "Failed to store ", " In to factory map for asset manager!");
 		Log::GetLog().LogHighMsg(failureMsg);
@@ -126,7 +126,7 @@ AssetCache::GetAsset(const std::string& pFileName, bool& pReturn)
 
 	//Find asset
 	std::shared_ptr<Asset> foundAsset = nullptr;
-	if (!FindAssetInFactory<P>(pFileName))
+	if (!FindAssetInLoader<P>(pFileName))
 	{
 		Log::GetLog().LogHighMsg(
 			"Failed to get asset " +
@@ -149,17 +149,17 @@ AssetCache::GetAsset(const std::string& pFileName, bool& pReturn)
 //------------------------------------------//
 template< class I >
 std::shared_ptr<I>
-AssetCache::FindAssetInFactory(const std::string& pFilename)
+AssetCache::FindAssetInLoader(const std::string& pFilename)
 {
 	std::type_index assetType = typeid(I);
-	if (!DoesFactoryExistForAsset(assetType))
+	if (!DoesLoaderExistForAsset(assetType))
 	{
 		Log::GetLog().LogHighMsg("Asset Factory for " + BuildStringClass(assetType) + " is not registered for this asset manager");
 		return nullptr;
 	}
 
 	//Grab the factory from the map 
-	std::shared_ptr<AssetFactory> factoryForThisAsset = mAssetFactoryMap[assetType];
+	std::shared_ptr<AssetLoader> factoryForThisAsset = mAssetLoaderMap[assetType];
 	if (factoryForThisAsset == nullptr)
 	{
 		Log::GetLog().LogHighMsg("Asset Factory for " + BuildStringClass(assetType) + " is null for this asset manager");

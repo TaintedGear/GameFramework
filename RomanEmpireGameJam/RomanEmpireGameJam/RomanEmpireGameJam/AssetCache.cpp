@@ -15,9 +15,9 @@ AssetCache::~AssetCache()
 //------------------------------------------//
 // AssetManager::DoesFactoryExistForAsset				
 //------------------------------------------//
-bool AssetCache::DoesFactoryExistForAsset(const std::type_index& pTypeIndex) const
+bool AssetCache::DoesLoaderExistForAsset(const std::type_index& pTypeIndex) const
 {
-	return ( mAssetFactoryMap.count(pTypeIndex) > 0 );
+	return ( mAssetLoaderMap.count(pTypeIndex) > 0);
 }
 
 //------------------------------------------//

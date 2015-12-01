@@ -1,6 +1,6 @@
 #include "ApplicationAssetCache.h"
 
-#include "TextureAssetFactory.h"
+#include "TextureAssetLoader.h"
 #include "Texture.h"
 
 #include "Log.h"
@@ -25,13 +25,13 @@ bool ApplicationAssetCache::InitializeAssetCache(std::shared_ptr<class Rendering
 		return false;
 	}
 
-	if (!DoesFactoryExistForAsset<Texture>())
+	if (!DoesLoaderExistForAsset<Texture>())
 	{
 		//Create the texture asset factor loader and register it
 		std::weak_ptr<RenderingSystem> renderingSystemWeak = pRenderingSystem;
-		TextureAssetFactoryLoader textureAssetFactorLoader(renderingSystemWeak);
+		TextureAssetLoaderInjector textureAssetLoaderInjector(renderingSystemWeak);
 
-		if (!RegisterFactory<TextureAssetFactory>(textureAssetFactorLoader))
+		if (!RegisterLoader<TextureAssetLoader>(textureAssetLoaderInjector))
 		{
 			Log::GetLog().LogCriticalMsg("Failed to register Texture asset factory");
 			return false;

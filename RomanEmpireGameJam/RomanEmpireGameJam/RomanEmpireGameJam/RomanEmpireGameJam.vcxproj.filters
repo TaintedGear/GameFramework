@@ -46,14 +46,8 @@
     <Filter Include="Header Files\Asset">
       <UniqueIdentifier>{9c53d078-bdc6-47ce-a6c5-54807a7aa4a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Asset\AssetFactory">
-      <UniqueIdentifier>{fd647e22-6dd7-49e9-a5b4-f8ea0945d5a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Asset">
       <UniqueIdentifier>{c4925811-5d60-43bf-aed6-889e20a672d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Asset\AssetFactory">
-      <UniqueIdentifier>{7fdd8cb7-c551-468d-acda-9cbbb234589a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Memory">
       <UniqueIdentifier>{0f67a0a7-2e7f-4ac1-b8d5-748497266bea}</UniqueIdentifier>
@@ -84,6 +78,18 @@
     </Filter>
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{a5e655cc-8615-4f84-8bd4-cd2ce8112b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset\AssetLoader">
+      <UniqueIdentifier>{fd647e22-6dd7-49e9-a5b4-f8ea0945d5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset\AssetLoader">
+      <UniqueIdentifier>{7fdd8cb7-c551-468d-acda-9cbbb234589a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset\AssetPool">
+      <UniqueIdentifier>{f4fa1b0f-eaf9-4b29-aac4-3440b5ec0ac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset\AssetPool">
+      <UniqueIdentifier>{82619ed7-53d1-4c36-85be-b3bf8452f722}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -147,12 +153,6 @@
     <ClCompile Include="FileHelper.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="TextureAssetFactory.cpp">
-      <Filter>Source Files\Asset\AssetFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetFactory.cpp">
-      <Filter>Source Files\Asset\AssetFactory</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -179,6 +179,15 @@
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetLoader.cpp">
+      <Filter>Source Files\Asset\AssetLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureAssetLoader.cpp">
+      <Filter>Source Files\Asset\AssetLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetPool.cpp">
+      <Filter>Source Files\Asset\AssetPool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,12 +260,6 @@
     <ClInclude Include="FileHelper.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="TextureAssetFactory.h">
-      <Filter>Header Files\Asset\AssetFactory</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetFactory.h">
-      <Filter>Header Files\Asset\AssetFactory</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -286,6 +289,15 @@
     </ClInclude>
     <ClInclude Include="FilePaths.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetLoader.h">
+      <Filter>Header Files\Asset\AssetLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAssetLoader.h">
+      <Filter>Header Files\Asset\AssetLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetPool.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

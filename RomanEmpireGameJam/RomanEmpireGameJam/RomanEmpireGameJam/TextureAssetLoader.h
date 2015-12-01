@@ -1,14 +1,14 @@
 #pragma once
 
-#include "AssetFactory.h"
+#include "AssetLoader.h"
 #include "RenderingSystem.h"
 
 // Texture loader requires the rendering system
-class TextureAssetFactoryLoader : public AssetFactoryLoader
+class TextureAssetLoaderInjector : public AssetLoaderInjector
 {
 public:
-	TextureAssetFactoryLoader(){ };
-	TextureAssetFactoryLoader(std::weak_ptr<RenderingSystem> pRenderingSystem);
+	TextureAssetLoaderInjector(){ };
+	TextureAssetLoaderInjector(std::weak_ptr<RenderingSystem> pRenderingSystem);
 	
 	std::weak_ptr<RenderingSystem> RenderingSystemRef() const { return RenderingSystemWeakRef; }
 
@@ -17,19 +17,19 @@ private:
 };
 
 // Texture asset factory
-class TextureAssetFactory : public AssetFactory
+class TextureAssetLoader : public AssetLoader
 {
 public:
-	TextureAssetFactory();
-	~TextureAssetFactory();
+	TextureAssetLoader();
+	~TextureAssetLoader();
 
-	bool InitializeFactory(AssetFactoryLoader& pAssetFactoryLoader);
+	bool InitializeLoader(AssetLoaderInjector& pAssetFactoryLoader) override;
 
 	std::shared_ptr<Asset> CreateAsset
 		(const std::string& pFilepath,
 		const std::string& pFilename) override;
 
 private:
-	TextureAssetFactoryLoader mFactoryLoader;
+	TextureAssetLoaderInjector mInjector;
 };
 

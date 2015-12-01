@@ -1,24 +1,24 @@
-#include "AssetFactory.h"
+#include "AssetLoader.h"
 
 #include "FileHelper.h"
 #include "FilePaths.h"
 #include "Intrinsics.h"
 
-AssetFactory::AssetFactory(const std::type_index& pAssetType)
+AssetLoader::AssetLoader(const std::type_index& pAssetType)
 	:
 mAssetType(pAssetType)
 {
 }
 
-AssetFactory::~AssetFactory()
+AssetLoader::~AssetLoader()
 {
-	ShutdownFactory();
+	ShutdownLoader();
 }
 
 //------------------------------------------//
 // AssetFactory::AddExceptedFileExstention				
 //------------------------------------------//
-void AssetFactory::AddExceptedFileExstention(const std::string& pFileExtension)
+void AssetLoader::AddExceptedFileExstention(const std::string& pFileExtension)
 {
 	mAssetAcceptedFileExtension.push_back(pFileExtension);
 }
@@ -26,7 +26,7 @@ void AssetFactory::AddExceptedFileExstention(const std::string& pFileExtension)
 //------------------------------------------//
 // AssetFactory::CheckFilenameIsValidWithFileExtensions				
 //------------------------------------------//
-bool AssetFactory::CheckFilenameIsValidWithFileExtensions(const std::string& pFilename)
+bool AssetLoader::CheckFilenameIsValidWithFileExtensions(const std::string& pFilename)
 {
 	//Get everything passed the .
 	std::string::size_type dotPos = pFilename.find_last_of('.');
@@ -53,7 +53,7 @@ bool AssetFactory::CheckFilenameIsValidWithFileExtensions(const std::string& pFi
 //------------------------------------------//
 // AssetFactory::GetAssetFilepath				
 //------------------------------------------//
-bool AssetFactory::GetAssetFilepath(const std::string& pFilename, std::string& pFilepath)
+bool AssetLoader::GetAssetFilepath(const std::string& pFilename, std::string& pFilepath)
 {
 	//Find the filepath to the filename - (Look at alternative for this)
 	FileHelper fileHelper;
@@ -100,7 +100,7 @@ bool AssetFactory::GetAssetFilepath(const std::string& pFilename, std::string& p
 //------------------------------------------//
 // AssetFactory::ShutdownFactory				
 //------------------------------------------//
-void AssetFactory::ShutdownFactory()
+void AssetLoader::ShutdownLoader()
 {
 	//Go through each loaded asset and release them (If any still have ref count then handle differently?)
 }
@@ -108,7 +108,7 @@ void AssetFactory::ShutdownFactory()
 //------------------------------------------//
 // AssetFactory::InitializeFactory				
 //------------------------------------------//
-bool AssetFactory::InitializeFactory(AssetFactoryLoader& pAssetFactoryLoader)
+bool AssetLoader::InitializeLoader(AssetLoaderInjector& pAssetFactoryLoader)
 {
 	return true;
 }

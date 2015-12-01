@@ -10,3 +10,5 @@ Low: Created Asset: sword.png
 Low: Got asset sword.png
 High: Asset Factory for class Asset is not registered for this asset manager
 High: Failed to get asset TEST of class Asset
+Critical: WE ARE RECYCLEING
+Critical: WE cant see it anymore
