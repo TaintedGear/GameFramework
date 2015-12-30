@@ -1,7 +1,6 @@
 #include "TextureAssetLoader.h"
 #include "Texture.h"
 
-
 //------------------------------------------//
 // TextureAssetFactoryLoader::TextureAssetFactoryLoader				
 //------------------------------------------//
@@ -17,6 +16,7 @@ TextureAssetLoader::TextureAssetLoader() : AssetLoader(typeid(Texture))
 	AddExceptedFileExstention("bmp");
 	AddExceptedFileExstention("jpg");
 	AddExceptedFileExstention("jpeg");
+
 }
 
 TextureAssetLoader::~TextureAssetLoader()
@@ -27,33 +27,36 @@ TextureAssetLoader::~TextureAssetLoader()
 //------------------------------------------//
 // TextureAssetFactory::CreateAsset				
 //------------------------------------------//
-std::shared_ptr<Asset> TextureAssetLoader::CreateAsset(const std::string& pFilepath, const std::string& pFilename)
+bool TextureAssetLoader::LoadAsset(
+	const std::string& pFilepath,
+	const std::string& pFilename,
+	std::shared_ptr<Asset>& pAsset)
 {
+	//Downcast the asset to make sure we can use it
+	std::shared_ptr<Texture> loadAsset = std::static_pointer_cast<Texture>(pAsset);
+
 	//Check if the weak reference to the rendering system is all good
 	if (mInjector.RenderingSystemRef().lock() == nullptr)
 	{
-		return nullptr;
+		return false;
 	}
-	
-	std::shared_ptr<Texture> newTexture;
-	newTexture = std::make_shared<Texture>(pFilepath, pFilename);
 
-	if (!mInjector.RenderingSystemRef().lock()->LoadTexture(newTexture))
+	if (!mInjector.RenderingSystemRef().lock()->LoadTexture(loadAsset))
 	{
 		Log::GetLog().LogCriticalMsg("Failed to create texture asset!");
-		return nullptr;
+		return false;
 	}
 
-	return newTexture;
+	return true;
 }
 
 //------------------------------------------//
 // TextureAssetFactory::InitializeFactory				
 //------------------------------------------//
-bool TextureAssetLoader::InitializeLoader(AssetLoaderInjector& pAssetLoaderInjector)
+bool TextureAssetLoader::InitializeLoader(const AssetLoaderInjector& pAssetLoaderInjector)
 {
 	//(CHANGE THIS SO THAT WE JUST TAKE A SYSTEM THAT HAS A VIRTUAL LOAD FUNC (REMOVES THE NEEDS TO DOWNCAST)
-	mInjector = static_cast<TextureAssetLoaderInjector&>(pAssetLoaderInjector);
+	mInjector = static_cast<const TextureAssetLoaderInjector&>(pAssetLoaderInjector);
 	
 	if (mInjector.RenderingSystemRef().lock() == nullptr)
 	{
@@ -62,4 +65,12 @@ bool TextureAssetLoader::InitializeLoader(AssetLoaderInjector& pAssetLoaderInjec
 	}
 
 	return true;
+}
+
+//------------------------------------------//
+// TextureAssetLoader::UnloadAsset				
+//------------------------------------------//
+void TextureAssetLoader::UnloadAsset(Asset* pAsset)
+{
+	Log::GetLog().LogCriticalMsg("THIS WAS CALLED!");
 }

@@ -31,9 +31,9 @@ bool ApplicationAssetCache::InitializeAssetCache(std::shared_ptr<class Rendering
 		std::weak_ptr<RenderingSystem> renderingSystemWeak = pRenderingSystem;
 		TextureAssetLoaderInjector textureAssetLoaderInjector(renderingSystemWeak);
 
-		if (!RegisterLoader<TextureAssetLoader>(textureAssetLoaderInjector))
+		if (!RegisterLoader<Texture, TextureAssetLoader>(textureAssetLoaderInjector))
 		{
-			Log::GetLog().LogCriticalMsg("Failed to register Texture asset factory");
+			Log::GetLog().LogCriticalMsg("Failed to register Texture asset loader");
 			return false;
 		}
 	}

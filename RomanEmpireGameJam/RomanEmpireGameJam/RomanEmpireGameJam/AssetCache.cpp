@@ -17,7 +17,7 @@ AssetCache::~AssetCache()
 //------------------------------------------//
 bool AssetCache::DoesLoaderExistForAsset(const std::type_index& pTypeIndex) const
 {
-	return ( mAssetLoaderMap.count(pTypeIndex) > 0);
+	return (mAssetCacheMap.count(pTypeIndex) > 0);
 }
 
 //------------------------------------------//

@@ -79,11 +79,6 @@ void RenderingSystem::DestroySystem()
 bool RenderingSystem::LoadTexture(std::shared_ptr<Texture> pTexture)
 {
 	//Sanity check
-	if ( pTexture == nullptr) //Check if texture is not null
-	{
-		Log::GetLog().LogHighMsg("Failed to load texture asset due to asset being null");
-		return false;
-	}
 	if (pTexture->AssetFilePath().length() <= 0) //Check if the asset path is valid
 	{
 		Log::GetLog().LogHighMsg("Failed to load texture asset due to invalid path");

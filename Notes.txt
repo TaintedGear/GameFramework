@@ -8,6 +8,9 @@ AssetManager
 - Add debug to print all assets currently loaded or stored
 - Change assets so we create them but dont load until told?
 
+- 1) loader creates asset pool object which can be stored in the cache
+- 2) loader turns to a factory and also holds the asset pool
+
 - CHANGE HOW I HANDLE THE UN USED MEMORY IN THE POOL AND HOW WE FIND IT
 - ALSO INCLUDE THE IF THINGS NEED TO BE LEFT LOADED AND PERSIST ASSETS;
 - Change how I handle the asset loader injectors to just be a vector of systems, and the child constructor asks for the dependancies

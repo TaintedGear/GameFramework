@@ -70,12 +70,10 @@ bool BasicApp::Initialize()
 		return false;
 	}
 
-	bool test = false;
-	mAssetManager->GetAsset<Texture>("Helmet.png", test);
-	mAssetManager->GetAsset<Texture>("Sheild.png", test);
-	mAssetManager->GetAsset<Texture>("sword.png", test);
-
-	mAssetManager->GetAsset<Asset>("TEST", test);
+	AssetHandle<Texture> asset(nullptr);
+	mAssetManager->GetAsset<Texture>("Helmet.png", asset);
+	mAssetManager->GetAsset<Texture>("Sheild.png", asset);
+	mAssetManager->GetAsset<Texture>("sword.png", asset);
 
 	return true;
 }

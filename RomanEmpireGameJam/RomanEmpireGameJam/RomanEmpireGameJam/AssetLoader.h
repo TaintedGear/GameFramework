@@ -14,6 +14,7 @@
 
 // This classed is to be inherited from, allows injection of systems into the different asset loaders
 // To allow for assets to be loaded properly with the correct systems.
+
 class AssetLoaderInjector
 {
 public:
@@ -27,16 +28,20 @@ public:
 	virtual ~AssetLoader();
 
 	// 
-	virtual bool InitializeLoader(AssetLoaderInjector& pAssetLoaderInjector);
+	virtual bool InitializeLoader( const AssetLoaderInjector& pAssetLoaderInjector);
 	void ShutdownLoader();
 
 	// Get the asset type that this factory is responsible for
 	std::type_index GetAssetType() const { return mAssetType; }
 
-	// The child is responsible for creating their version of create asset
-	virtual std::shared_ptr<Asset> CreateAsset(
+	// The child is responsible for loading their version of create asset
+	virtual bool LoadAsset(
 		const std::string& pFilepath,
-		const std::string& pFilename) = 0;
+		const std::string& pFilename,
+		std::shared_ptr<Asset>& pAsset) { return false; };
+
+	//
+	virtual void UnloadAsset(Asset* pAsset) {};
 
 public:
 
@@ -63,7 +68,7 @@ private:
 private:
 	//Store the asset type that this factory will load
 	std::type_index mAssetType;
-	
+
 	//Store all the assets of said asset type <FileName, Asset>
 	std::map<std::string, std::shared_ptr<Asset>> mAssetMap;
 

@@ -6,6 +6,7 @@
 class Texture : public Asset
 {
 public:
+	Texture() {};
 	Texture(const std::string& pAssetFilepath, const std::string& pAssetFilename);
 	virtual ~Texture();
 

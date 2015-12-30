@@ -2,6 +2,7 @@
 
 #include "PCH.h"
 
+// ADD THE ASSET FILE PATH + NAME + META DATA INTO THE HANDLE NOT THE ASSET
 template<class T>
 struct AssetHandle
 {
@@ -16,6 +17,7 @@ struct AssetHandle
 class Asset
 {
 public:
+	Asset() {};
 	Asset(const std::string& pAssetFilepath, const std::string& pAssetFilename);
 	virtual ~Asset();
 

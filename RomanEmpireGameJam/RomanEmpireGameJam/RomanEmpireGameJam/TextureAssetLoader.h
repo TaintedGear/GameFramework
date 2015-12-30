@@ -23,11 +23,14 @@ public:
 	TextureAssetLoader();
 	~TextureAssetLoader();
 
-	bool InitializeLoader(AssetLoaderInjector& pAssetFactoryLoader) override;
+	bool InitializeLoader(const AssetLoaderInjector& pAssetFactoryLoader) override;
 
-	std::shared_ptr<Asset> CreateAsset
-		(const std::string& pFilepath,
-		const std::string& pFilename) override;
+	bool LoadAsset(
+		const std::string& pFilepath,
+		const std::string& pFilename,
+		std::shared_ptr<Asset>& pAsset) override;
+
+	void UnloadAsset(Asset* pAsset) override;
 
 private:
 	TextureAssetLoaderInjector mInjector;

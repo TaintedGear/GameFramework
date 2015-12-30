@@ -108,7 +108,7 @@ void AssetLoader::ShutdownLoader()
 //------------------------------------------//
 // AssetFactory::InitializeFactory				
 //------------------------------------------//
-bool AssetLoader::InitializeLoader(AssetLoaderInjector& pAssetFactoryLoader)
+bool AssetLoader::InitializeLoader(const AssetLoaderInjector& pAssetFactoryLoader)
 {
 	return true;
 }
