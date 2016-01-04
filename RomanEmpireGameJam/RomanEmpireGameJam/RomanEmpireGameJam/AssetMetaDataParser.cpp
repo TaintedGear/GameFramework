@@ -196,15 +196,15 @@ bool AssetMetaDataParser::WriteAssetAttributes(class File& metaDataFile, const s
 		metaDataFile.Write(Tab() + "<X>" + attributeValue + "</X>\n");
 
 		// Y
-		attributeValue = ToString(metaData.VectorAttributes[i].AttributeValue.x);
+		attributeValue = ToString(metaData.VectorAttributes[i].AttributeValue.y);
 		metaDataFile.Write(Tab() + "<Y>" + attributeValue + "</Y>\n");
 
 		// Z
-		attributeValue = ToString(metaData.VectorAttributes[i].AttributeValue.x);
+		attributeValue = ToString(metaData.VectorAttributes[i].AttributeValue.z);
 		metaDataFile.Write(Tab() + "<Z>" + attributeValue + "</Z>\n");
 
 		// W
-		attributeValue = ToString(metaData.VectorAttributes[i].AttributeValue.x);
+		attributeValue = ToString(metaData.VectorAttributes[i].AttributeValue.w);
 		metaDataFile.Write(Tab() + "<W>" + attributeValue + "</W>\n");
 
 		RemoveTabLevel();

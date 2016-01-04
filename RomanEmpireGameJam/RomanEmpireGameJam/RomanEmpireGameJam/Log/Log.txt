@@ -2,4 +2,4 @@
 Verbosity is set to Low
 <---------------------------------------------------->
 High: Created Renderer Successfully
-Low: C:/Users/jason/Desktop/GameFramework/GameFrameworkRepo/RomanEmpireGameJam/RomanEmpireGameJam/RomanEmpireGameJam/Asset/Helmet.png Meta data file exists
+Low: C:/Users/jason/Desktop/GameFramework/GameFrameworkRepo/RomanEmpireGameJam/RomanEmpireGameJam/RomanEmpireGameJam/Asset/Thumbs.db Meta data file exists
