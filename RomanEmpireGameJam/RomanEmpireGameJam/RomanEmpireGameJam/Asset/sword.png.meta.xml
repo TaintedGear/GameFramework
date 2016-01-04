@@ -1,0 +1,16 @@
+<Asset>
+	<Type>struct AssetMetaData</Type>
+	<Name>Test</Name>
+	<Path>SHIT</Path>
+	<Attributes>
+		<Test>
+			<V>5.000000</V>
+		</Test>
+		<TestV>
+			<X>5.000000</X>
+			<Y>5.000000</Y>
+			<Z>5.000000</Z>
+			<W>5.000000</W>
+		</TestV>
+	</Attributes>
+</Asset>
