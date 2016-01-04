@@ -1,15 +1,13 @@
 #pragma once
 
 #include "PCH.h"
-#include "AssetCache.h"
-#include "AssetFinder.h"
 
 //Creates the entitys
 
 class EntityFactory
 {
 public:
-	EntityFactory(std::shared_ptr<class AssetCache> pAssetCache);
+	EntityFactory();
 	~EntityFactory();
 
 	template<typename T>
@@ -21,6 +19,6 @@ public:
 
 private:
 	// To be passed down to all the entitys that are created
-	class std::shared_ptr<AssetFinder> mAssetFinder;
+	
 };
 

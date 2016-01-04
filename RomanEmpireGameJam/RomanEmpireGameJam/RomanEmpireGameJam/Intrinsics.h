@@ -88,11 +88,12 @@ inline std::string GetLineAndFileInfo()
 //	FindAndReplace
 //-------------------------------------------------------------------------
 
-inline bool FindAndReplace(std::string& pSourceString,
-	const std::string pFindString,
-	const std::string pReplaceString,
-	const std::string::size_type pStart,
-	const std::string::size_type pEnd)
+inline bool FindAndReplace(
+	std::string& pSourceString,
+	const std::string& pFindString,
+	const std::string& pReplaceString,
+	const std::string::size_type& pStart,
+	const std::string::size_type& pEnd)
 {
 	//Sanity Check
 	if (pStart < 0 || pStart > pEnd || pStart > (pSourceString.length() - 1) ||
@@ -116,3 +117,36 @@ inline bool FindAndReplace(std::string& pSourceString,
 
 	return true;
 }
+
+//-------------------------------------------------------------------------
+//	FindSubstring
+//-------------------------------------------------------------------------
+
+inline bool FindSubstring(
+	std::string& pSourceString,
+	const char& pStartChar,
+	const char& pEndChar)
+{
+	//Sanity Check
+	if (pSourceString.length() <= 0)
+	{
+		return false;
+	}
+
+	std::string::size_type startPos = pSourceString.find(pStartChar);
+	if (startPos == std::string::npos)
+	{
+		return false;
+	}
+
+	std::string::size_type endPos = pSourceString.find(pEndChar);
+	if (endPos == std::string::npos)
+	{
+		return false;
+	}
+
+	pSourceString = pSourceString.substr(startPos, endPos);
+
+	return true;
+}
+

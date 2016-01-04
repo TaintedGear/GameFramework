@@ -20,7 +20,27 @@ public:
 	// Parameter: bool bPropergate - Allows to go through sub folders and return those file names
 	// Parameter: bool & bResult
 	//************************************
-	std::vector<std::string> GetAllFilesInFolder(const std::string& pFolderName, bool& bResult, bool bPropergate = false );
+	std::vector<std::string> GetAllFilesInFolder(
+		const std::string& pFolderName,
+		bool bIncludeFolderpath,
+		bool& bResult, 
+		bool bPropergate = false );
+
+	// Will return all files in the given folder with an ending substring
+	std::vector<std::string> GetAllFilesInFolderWithEndingSubstring(
+		const std::string& folderName,
+		const std::string& endingSubstring,
+		bool bIncludeFolderpath,
+		bool& bResult,
+		bool bPropergate = false );
+
+	// Will return all files in the given folder that dont have an ending substring
+	std::vector<std::string> GetAllFilesInFolderWithoutEndingSubstring(
+		const std::string& folderName,
+		const std::string& endingSubstring,
+		bool bIncludeFolderpath,
+		bool& bResult,
+		bool bPropergate = false);
 
 	bool CheckFolderExists(const std::string& pDirectory);
 	bool CreateFolder(const std::string& pDirectory);

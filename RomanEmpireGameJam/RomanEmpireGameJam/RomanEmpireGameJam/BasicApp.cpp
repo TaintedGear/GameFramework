@@ -49,9 +49,11 @@ bool BasicApp::Initialize()
 		return false;
 	}
 
-	if (!mAssetManager->InitializeAssetCache(mRenderingSystem))
+	mAssetDatabase->DiscoverAssets();
+
+	if (!mAssetCacheCollection->InitilizeAssetCollection())
 	{
-		Log::GetLog().LogCriticalMsg("Failed to initialize asset manager");
+		Log::GetLog().LogCriticalMsg("Failed to initialize the asset cache collection");
 		return false;
 	}
 
@@ -69,11 +71,6 @@ bool BasicApp::Initialize()
 		Log::GetLog().LogCriticalMsg("Failed to create world");
 		return false;
 	}
-
-	AssetHandle<Texture> asset(nullptr);
-	mAssetManager->GetAsset<Texture>("Helmet.png", asset);
-	mAssetManager->GetAsset<Texture>("Sheild.png", asset);
-	mAssetManager->GetAsset<Texture>("sword.png", asset);
 
 	return true;
 }

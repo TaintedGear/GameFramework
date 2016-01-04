@@ -65,6 +65,14 @@ bool File::Write(const char* pWriteData)
 	return retVal;
 }
 
+//------------------------------------------//
+// File::Write				
+//------------------------------------------//
+bool File::Write(const std::string& pWriteData)
+{
+	return Write(pWriteData.c_str());
+}
+
 bool File::Read(char* pReadData, int pStartPos, int pEndPos)
 {
 	bool retVal = true;
@@ -94,12 +102,26 @@ bool File::Read(char* pReadData, int pStartPos, int pEndPos)
 	return retVal;
 }
 
-std::string File::GetFilepath() const 
+//------------------------------------------//
+// File::GetFilepath				
+//------------------------------------------//
+const std::string File::GetFilepath() const 
 {
 	return mFilepath;
 }
 
-File::FileMode File::GetFilemode() const
+//------------------------------------------//
+// File::GetFilemode				
+//------------------------------------------//
+const File::FileMode File::GetFilemode() const
 {
 	return mFileMode;
+}
+
+//------------------------------------------//
+// File::IsOpen				
+//------------------------------------------//
+const bool File::IsOpen() const
+{
+	return mFile.is_open();
 }

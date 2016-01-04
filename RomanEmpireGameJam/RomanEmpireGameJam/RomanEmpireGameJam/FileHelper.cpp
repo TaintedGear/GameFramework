@@ -26,7 +26,11 @@ bool FileHelper::CheckFileExists(const std::string& pFilename)
 //------------------------------------------//
 // FileHelper::GetAllFilesInFolder				
 //------------------------------------------//
-std::vector<std::string> FileHelper::GetAllFilesInFolder(const std::string& pFolderName, bool& bResult, bool bPropergate /*= false*/)
+std::vector<std::string> FileHelper::GetAllFilesInFolder(
+	const std::string& pFolderName,
+	bool bIncludeFolderpath,
+	bool& bResult,
+	bool bPropergate /*= false*/)
 {
 	std::vector<std::string> fileStrings;
 	bResult = true;
@@ -48,7 +52,8 @@ std::vector<std::string> FileHelper::GetAllFilesInFolder(const std::string& pFol
 		{
 			if (!(fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
-				fileStrings.push_back(pFolderName + fileData.cFileName);
+				fileStrings.push_back(
+					bIncludeFolderpath ? pFolderName + fileData.cFileName : fileData.cFileName );
 			}
 		} while (::FindNextFile(hFind, &fileData));
 		::FindClose(hFind);
@@ -212,4 +217,119 @@ bool FileHelper::SeperateFileNameFromFilePath(const std::string& pFullPath, std:
 	pFileName = pFullPath.substr(lastSlash + 1);
 
 	return true;
+}
+
+//------------------------------------------//
+// FileHelper::GetAllFilesInFolderWithSubstring				
+//------------------------------------------//
+std::vector<std::string> FileHelper::GetAllFilesInFolderWithEndingSubstring(
+	const std::string& folderName,
+	const std::string& endingSubstring,
+	bool bIncludeFolderpath,
+	bool& bResult,
+	bool bPropergate /*= false */)
+{
+	std::vector<std::string> fileStrings;
+	bResult = true;
+
+	//Get all files from folder - windows - code from: http://stackoverflow.com/questions/20860822/finding-the-file-path-of-all-files-in-a-folder
+#if __WINDOWS__
+
+	char searchPath[MAX_PATH];
+
+	// Get the search path
+	sprintf_s(searchPath, "%s*.*", folderName.c_str());
+
+	WIN32_FIND_DATA fileData;
+	HANDLE hFind = ::FindFirstFile(searchPath, &fileData);
+
+	if (hFind != INVALID_HANDLE_VALUE)
+	{
+		do
+		{
+			if (!(fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+			{
+				const std::string fileName = fileData.cFileName;
+				//Work out the compare length
+				const size_t start = fileName.length() - endingSubstring.length();
+				if (start > 0)
+				{
+					//If the ending substring is matching the fileName then add to the fileStrings
+					if (fileName.compare(start, endingSubstring.length(), endingSubstring) == 0)
+					{
+						fileStrings.push_back(
+							bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+					}
+				}
+			}
+		} while (::FindNextFile(hFind, &fileData));
+		::FindClose(hFind);
+	}
+
+#endif
+
+	if (fileStrings.size() <= 0)
+	{
+		bResult = false;
+	}
+
+	return fileStrings;
+}
+
+//------------------------------------------//
+// FileHelper::GetAllFilesInFolderWithoutEndingSubstring				
+//------------------------------------------//
+std::vector<std::string> FileHelper::GetAllFilesInFolderWithoutEndingSubstring(
+		const std::string& folderName,
+		const std::string& endingSubstring,
+		bool bIncludeFolderpath,
+		bool& bResult,
+		bool bPropergate /*= false */)
+{
+
+	std::vector<std::string> fileStrings;
+	bResult = true;
+
+	// Get all files from folder - windows - code from: http://stackoverflow.com/questions/20860822/finding-the-file-path-of-all-files-in-a-folder
+#if __WINDOWS__
+
+	char searchPath[MAX_PATH];
+
+	// Get the search path
+	sprintf_s(searchPath, "%s*.*", folderName.c_str());
+
+	WIN32_FIND_DATA fileData;
+	HANDLE hFind = ::FindFirstFile(searchPath, &fileData);
+
+	if (hFind != INVALID_HANDLE_VALUE)
+	{
+		do
+		{
+			if (!(fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+			{
+				const std::string fileName = fileData.cFileName;
+				// Work out the compare length
+				const size_t start = fileName.length() - endingSubstring.length();
+				if (start > 0)
+				{
+					// If the ending substring is matching the fileName then add to the fileStrings
+					if (fileName.compare(start, endingSubstring.length(), endingSubstring) != 0)
+					{
+						fileStrings.push_back( 
+							bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+					}
+				}
+			}
+		} while (::FindNextFile(hFind, &fileData));
+		::FindClose(hFind);
+	}
+
+#endif
+
+	if (fileStrings.size() <= 0)
+	{
+		bResult = false;
+	}
+
+	return fileStrings;
 }

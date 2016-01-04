@@ -35,10 +35,16 @@ mWindow(nullptr)
 		Log::GetLog().LogCriticalMsg("Failed to allocate the rendering system");
 	}
 
-	mAssetManager = std::make_shared<ApplicationAssetCache>();
-	if (mAssetManager == nullptr)
+	mAssetCacheCollection = std::make_shared<AssetCacheCollection>();
+	if (mAssetCacheCollection == nullptr)
 	{
-		Log::GetLog().LogCriticalMsg("Failed to allocate the asset manager");
+		Log::GetLog().LogCriticalMsg("Failed to allocate the AssetCacheCollection");
+	}
+
+	mAssetDatabase = std::make_shared<AssetDatabase>();
+	if (mAssetDatabase == nullptr)
+	{
+		Log::GetLog().LogCriticalMsg("Failed to allocate the AssetDatabase");
 	}
 
 	//Write verbosity setting

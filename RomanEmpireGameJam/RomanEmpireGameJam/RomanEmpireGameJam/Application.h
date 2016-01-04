@@ -4,7 +4,8 @@
 #include "FrameRateTimer.h"
 #include "Window.h"
 #include "RenderingSystem.h"
-#include "ApplicationAssetCache.h"
+#include "AssetCacheCollection.h"
+#include "AssetDatabase.h"
 
 class Application
 {
@@ -30,10 +31,11 @@ protected:
 
 	static Application* mApplication;
 
-	std::shared_ptr<FrameRateTimer> mFrameTimer;
-	std::shared_ptr<Window> mWindow;
-	std::shared_ptr<RenderingSystem> mRenderingSystem;
-	std::shared_ptr<ApplicationAssetCache> mAssetManager;
+	std::shared_ptr<class FrameRateTimer> mFrameTimer;
+	std::shared_ptr<class Window> mWindow;
+	std::shared_ptr<class RenderingSystem> mRenderingSystem;
+	std::shared_ptr<class AssetCacheCollection> mAssetCacheCollection;
+	std::shared_ptr<class AssetDatabase> mAssetDatabase;
 
 	bool mQuit;
 };

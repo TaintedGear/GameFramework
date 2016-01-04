@@ -3,7 +3,6 @@
 #include "PCH.h"
 #include "Window.h"
 #include "Math.h"
-#include "Texture.h"
 
 class RenderingSystem
 {
@@ -35,7 +34,7 @@ public:
 	bool CreateSystem(std::shared_ptr<Window> pRenderWindow, const RendererInfo& pRenderInfo);
 	void DestroySystem();
 
-	bool LoadTexture(std::shared_ptr<Texture> pTexture);
+	//bool LoadTexture(std::shared_ptr<Texture> pTexture);
 
 	RendererInfo GetRenderInfo();
 

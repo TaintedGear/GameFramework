@@ -13,11 +13,14 @@
   <ItemGroup>
     <ClCompile Include="AnimatedSpriteComponent.cpp" />
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="ApplicationAssetCache.cpp" />
     <ClCompile Include="Asset.cpp" />
-    <ClCompile Include="AssetLoader.cpp" />
-    <ClCompile Include="AssetFinder.cpp" />
     <ClCompile Include="AssetCache.cpp" />
+    <ClCompile Include="AssetCacheCollection.cpp" />
+    <ClCompile Include="AssetDatabase.cpp" />
+    <ClCompile Include="AssetFileExtensions.cpp" />
+    <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="AssetMetaData.cpp" />
+    <ClCompile Include="AssetMetaDataParser.cpp" />
     <ClCompile Include="AssetPool.cpp" />
     <ClCompile Include="BasicApp.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -37,8 +40,8 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="System.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureAssetLoader.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="Texture2DAssetLoader.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -47,11 +50,15 @@
   <ItemGroup>
     <ClInclude Include="AnimatedSpriteComponent.h" />
     <ClInclude Include="Application.h" />
-    <ClInclude Include="ApplicationAssetCache.h" />
+    <ClInclude Include="Assertions.h" />
     <ClInclude Include="Asset.h" />
-    <ClInclude Include="AssetLoader.h" />
-    <ClInclude Include="AssetFinder.h" />
     <ClInclude Include="AssetCache.h" />
+    <ClInclude Include="AssetCacheCollection.h" />
+    <ClInclude Include="AssetDatabase.h" />
+    <ClInclude Include="AssetFileExtensions.h" />
+    <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="AssetMetaData.h" />
+    <ClInclude Include="AssetMetaDataParser.h" />
     <ClInclude Include="AssetPool.h" />
     <ClInclude Include="BasicApp.h" />
     <ClInclude Include="Component.h" />
@@ -75,12 +82,15 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="System.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureAssetLoader.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="Texture2DAssetLoader.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FD9EBDE0-E3B1-4AC2-A577-C4B45821EC1E}</ProjectGuid>

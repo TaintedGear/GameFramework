@@ -22,7 +22,7 @@
 
 //Defines
 //For use with raw ptrs
-#define SAFE_DELETE(x) {if(x){delete x; x = nullptr;}}
+#define SAFE_DELETE(x) {if(x != nullptr){delete x; x = nullptr;}}
 
 //Typedef's
-
+//(Wrap std around with typedefs? string, type_index etc)

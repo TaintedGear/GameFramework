@@ -11,16 +11,13 @@ Log::Log()
 	FileHelper fileManager;
 
 	//Create log folder and file if it doest already exist
-	if (!fileManager.CheckFolderExists(FilePaths::PROJECT_PATH() +
-		FilePaths::FILE_PATH_LOG()))
+	if (!fileManager.CheckFolderExists( FilePaths::FILE_PATH_LOG() ))
 	{
-		fileManager.CreateFolder(FilePaths::PROJECT_PATH() +
-			FilePaths::FILE_PATH_LOG());
+		fileManager.CreateFolder( FilePaths::FILE_PATH_LOG() );
 	}
 
 	// Will create the log file if it doesnt exist
-	std::string logFilePath = FilePaths::PROJECT_PATH() +
-		FilePaths::FILE_PATH_LOG() + "Log.txt";
+	std::string logFilePath = FilePaths::FILE_PATH_LOG() + "Log.txt";
 	mLogFile.Open(logFilePath, File::FileMode::READ_WRITE_NEW);
 }
 

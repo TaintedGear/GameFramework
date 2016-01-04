@@ -1,18 +1,13 @@
 #pragma once
 
-#include "AssetFinder.h"
-
 class Entity
 {
 public:
-	Entity( std::shared_ptr<class AssetFinder> pAssetFinder );
+	Entity();
 	virtual ~Entity();
 
 protected:
 	
-	//Creation helper proxies
-	std::shared_ptr< class AssetFinder > mAssetFinder;
-
 private:
 };
 

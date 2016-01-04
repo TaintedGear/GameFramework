@@ -73,55 +73,55 @@ void RenderingSystem::DestroySystem()
 	}
 }
 
-//------------------------------------------//
-// RenderingSystem::LoadTexture				
-//------------------------------------------//
-bool RenderingSystem::LoadTexture(std::shared_ptr<Texture> pTexture)
-{
-	//Sanity check
-	if (pTexture->AssetFilePath().length() <= 0) //Check if the asset path is valid
-	{
-		Log::GetLog().LogHighMsg("Failed to load texture asset due to invalid path");
-		return false;
-	}
-
-	//Load the texture from asset path - EXPAND THIS TO INCLUDE BMP's (Unless IMG does it)
-	SDL_Surface* loadedSurface = nullptr;
-	loadedSurface = IMG_Load(pTexture->AssetFilePath().c_str());
-	if (loadedSurface == nullptr)
-	{
-		Log::GetLog().LogHighMsg("Failed to load texture asset due to: "
-			+ std::string(SDL_GetError()) 
-			+ " " + std::string(IMG_GetError()) 
-			+ " at: "
-			+ pTexture->AssetFilePath());
-		return false;
-	}
-
-	// Create the new texture
-	SDL_Texture* newTexture = nullptr;
-	newTexture = SDL_CreateTextureFromSurface(mRenderer, loadedSurface);
-	if (newTexture == nullptr)
-	{
-		Log::GetLog().LogHighMsg("Failed to create new texture asset due to :"
-			+ std::string(SDL_GetError())
-			+ " at: " 
-			+ pTexture->AssetFilePath());
-
-		//Free surface
-		SDL_FreeSurface(loadedSurface);
-
-		return false;
-	}
-
-	SDL_FreeSurface(loadedSurface);
-
-	if (!pTexture->Create(newTexture))
-	{
-		Log::GetLog().LogHighMsg("Texture failed to create internally at: "
-			+ pTexture->AssetFilePath());
-		return false;
-	}
-
-	return true;
-}
+////------------------------------------------//
+//// RenderingSystem::LoadTexture				
+////------------------------------------------//
+//bool RenderingSystem::LoadTexture(std::shared_ptr<Texture> pTexture)
+//{
+//	//Sanity check
+//	if (pTexture->AssetFilePath().length() <= 0) //Check if the asset path is valid
+//	{
+//		Log::GetLog().LogHighMsg("Failed to load texture asset due to invalid path");
+//		return false;
+//	}
+//
+//	//Load the texture from asset path - EXPAND THIS TO INCLUDE BMP's (Unless IMG does it)
+//	SDL_Surface* loadedSurface = nullptr;
+//	loadedSurface = IMG_Load(pTexture->AssetFilePath().c_str());
+//	if (loadedSurface == nullptr)
+//	{
+//		Log::GetLog().LogHighMsg("Failed to load texture asset due to: "
+//			+ std::string(SDL_GetError()) 
+//			+ " " + std::string(IMG_GetError()) 
+//			+ " at: "
+//			+ pTexture->AssetFilePath());
+//		return false;
+//	}
+//
+//	// Create the new texture
+//	SDL_Texture* newTexture = nullptr;
+//	newTexture = SDL_CreateTextureFromSurface(mRenderer, loadedSurface);
+//	if (newTexture == nullptr)
+//	{
+//		Log::GetLog().LogHighMsg("Failed to create new texture asset due to :"
+//			+ std::string(SDL_GetError())
+//			+ " at: " 
+//			+ pTexture->AssetFilePath());
+//
+//		//Free surface
+//		SDL_FreeSurface(loadedSurface);
+//
+//		return false;
+//	}
+//
+//	SDL_FreeSurface(loadedSurface);
+//
+//	if (!pTexture->Create(newTexture))
+//	{
+//		Log::GetLog().LogHighMsg("Texture failed to create internally at: "
+//			+ pTexture->AssetFilePath());
+//		return false;
+//	}
+//
+//	return true;
+//}

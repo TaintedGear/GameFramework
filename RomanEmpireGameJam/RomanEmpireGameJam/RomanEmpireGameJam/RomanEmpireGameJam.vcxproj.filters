@@ -43,32 +43,8 @@
     <Filter Include="Source Files\World">
       <UniqueIdentifier>{81b534f9-f40b-457b-aec7-2e2defff2955}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Asset">
-      <UniqueIdentifier>{9c53d078-bdc6-47ce-a6c5-54807a7aa4a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Asset">
-      <UniqueIdentifier>{c4925811-5d60-43bf-aed6-889e20a672d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Memory">
       <UniqueIdentifier>{0f67a0a7-2e7f-4ac1-b8d5-748497266bea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Asset\AssetCache">
-      <UniqueIdentifier>{2c349d7a-9b6e-4d2c-ad4f-ba25d26ad280}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Asset\AssetCache">
-      <UniqueIdentifier>{079666cb-b8a1-44db-9b92-9cc67b112526}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Asset\AssetProxy">
-      <UniqueIdentifier>{78f7e1f0-9907-4660-b62e-3ebe17dd83bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Asset\AssetProxy">
-      <UniqueIdentifier>{ec2156f4-ec53-449e-a70d-f86e1d95cd92}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Asset\AssetTypes">
-      <UniqueIdentifier>{752c62c6-a5f6-4c94-9189-cd721c02c210}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Asset\AssetTypes">
-      <UniqueIdentifier>{b62d62d9-0ab0-4cb7-8c90-6e0fe82b5244}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Memory">
       <UniqueIdentifier>{bb8494ec-b36f-48b5-b07b-b66b6bcddc18}</UniqueIdentifier>
@@ -79,17 +55,35 @@
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{a5e655cc-8615-4f84-8bd4-cd2ce8112b2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Asset">
+      <UniqueIdentifier>{b0e2d0bf-d35f-4b96-aef0-6e2a3bc95cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset">
+      <UniqueIdentifier>{3f4dcc9a-5422-4079-83d5-d72e1bf53b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset\AssetTypes">
+      <UniqueIdentifier>{a58cae47-eed4-438a-b749-c1da56b83481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset\AssetTypes">
+      <UniqueIdentifier>{9ada992c-74ec-4e2b-a152-c7ac6a90fb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Asset\AssetCache">
+      <UniqueIdentifier>{acc457e0-6cf9-4641-9c67-3e6ab5ee449a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Asset\AssetLoader">
-      <UniqueIdentifier>{fd647e22-6dd7-49e9-a5b4-f8ea0945d5a9}</UniqueIdentifier>
+      <UniqueIdentifier>{1f6db986-7325-41a4-9450-ddd64e98b5a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Asset\AssetLoader">
-      <UniqueIdentifier>{7fdd8cb7-c551-468d-acda-9cbbb234589a}</UniqueIdentifier>
+      <UniqueIdentifier>{08595a10-a5f3-4f97-a831-4f42133fd497}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Asset\AssetPool">
-      <UniqueIdentifier>{f4fa1b0f-eaf9-4b29-aac4-3440b5ec0ac9}</UniqueIdentifier>
+      <UniqueIdentifier>{aae4debe-fd0d-4447-a9b0-d9181d68955e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Asset\AssetPool">
-      <UniqueIdentifier>{82619ed7-53d1-4c36-85be-b3bf8452f722}</UniqueIdentifier>
+      <UniqueIdentifier>{9be1d261-a31c-4e6d-abbb-ff037c4e6d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Asset\AssetCache">
+      <UniqueIdentifier>{1e3a0ee0-c142-4b21-8199-e75ba157f218}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -159,35 +153,44 @@
     <ClCompile Include="EntityFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationAssetCache.cpp">
-      <Filter>Source Files\Asset\AssetCache</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetCache.cpp">
-      <Filter>Source Files\Asset\AssetCache</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetFinder.cpp">
-      <Filter>Source Files\Asset\AssetProxy</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\Asset\AssetTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="Asset.cpp">
-      <Filter>Source Files\Asset\AssetTypes</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectPool.cpp">
       <Filter>Source Files\Memory</Filter>
     </ClCompile>
     <ClCompile Include="System.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>Source Files\Asset\AssetTypes</Filter>
+    </ClCompile>
     <ClCompile Include="AssetLoader.cpp">
       <Filter>Source Files\Asset\AssetLoader</Filter>
     </ClCompile>
-    <ClCompile Include="TextureAssetLoader.cpp">
+    <ClCompile Include="Texture2DAssetLoader.cpp">
       <Filter>Source Files\Asset\AssetLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Source Files\Asset\AssetTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetCache.cpp">
+      <Filter>Source Files\Asset\AssetCache</Filter>
     </ClCompile>
     <ClCompile Include="AssetPool.cpp">
       <Filter>Source Files\Asset\AssetPool</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetCacheCollection.cpp">
+      <Filter>Source Files\Asset\AssetCache</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetMetaDataParser.cpp">
+      <Filter>Source Files\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetDatabase.cpp">
+      <Filter>Source Files\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetFileExtensions.cpp">
+      <Filter>Source Files\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetMetaData.cpp">
+      <Filter>Source Files\Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,21 +269,6 @@
     <ClInclude Include="EntityFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ApplicationAssetCache.h">
-      <Filter>Header Files\Asset\AssetCache</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetCache.h">
-      <Filter>Header Files\Asset\AssetCache</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetFinder.h">
-      <Filter>Header Files\Asset\AssetProxy</Filter>
-    </ClInclude>
-    <ClInclude Include="Asset.h">
-      <Filter>Header Files\Asset\AssetTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files\Asset\AssetTypes</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectPool.h">
       <Filter>Header Files\Memory</Filter>
     </ClInclude>
@@ -290,14 +278,44 @@
     <ClInclude Include="FilePaths.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Asset.h">
+      <Filter>Header Files\Asset\AssetTypes</Filter>
+    </ClInclude>
     <ClInclude Include="AssetLoader.h">
       <Filter>Header Files\Asset\AssetLoader</Filter>
     </ClInclude>
-    <ClInclude Include="TextureAssetLoader.h">
+    <ClInclude Include="Texture2D.h">
+      <Filter>Header Files\Asset\AssetTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2DAssetLoader.h">
       <Filter>Header Files\Asset\AssetLoader</Filter>
     </ClInclude>
-    <ClInclude Include="AssetPool.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Assertions.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="AssetCache.h">
+      <Filter>Header Files\Asset\AssetCache</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetPool.h">
+      <Filter>Header Files\Asset\AssetPool</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetCacheCollection.h">
+      <Filter>Header Files\Asset\AssetCache</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetFileExtensions.h">
+      <Filter>Header Files\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetMetaDataParser.h">
+      <Filter>Header Files\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetDatabase.h">
+      <Filter>Header Files\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetMetaData.h">
+      <Filter>Header Files\Asset</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

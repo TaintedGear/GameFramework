@@ -9,16 +9,7 @@
 
 namespace FilePaths
 {
-	static const std::string FILE_PATH_CONTENT()
-	{
-		return "/Asset/";
-	}
-	static const std::string FILE_PATH_LOG()
-	{
-		return "/Log/";
-	}
-
-	// Allows me to call this once and never need to do it again
+	// Allows me to call this once and never need to do it again - confirm this
 	static const std::string PROJECT_PATH()
 	{
 		static std::string projectPath("");
@@ -38,5 +29,19 @@ namespace FilePaths
 		}
 
 		return projectPath;
+	}
+
+	static const std::string FILE_PATH_ASSETS()
+	{
+		return PROJECT_PATH() + "/Asset/";
+	}
+	static const std::string FILE_PATH_LOG()
+	{
+		return PROJECT_PATH() + "/Log/";
+	}
+
+	static const std::string META_DATA_FILE_EXT()
+	{
+		return "meta.xml";
 	}
 }

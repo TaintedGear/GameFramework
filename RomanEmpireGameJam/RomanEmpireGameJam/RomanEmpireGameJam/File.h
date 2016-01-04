@@ -23,12 +23,16 @@ public:
 	void Close();
 
 	bool Write(const char* pWriteData);
+	bool Write(const std::string& pWriteData);
 
 	//@Param: pReadData[out] = The read data retreived from file
 	bool Read(char* pReadData, int pStartPos, int pEndPos);
 
-	std::string GetFilepath() const;
-	FileMode GetFilemode() const;
+	const std::string GetFilepath() const;
+	const FileMode GetFilemode() const;
+	const bool IsOpen() const;
+
+
 
 private:
 	std::fstream mFile;
