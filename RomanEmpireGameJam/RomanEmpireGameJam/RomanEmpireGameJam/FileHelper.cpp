@@ -262,6 +262,25 @@ std::vector<std::string> FileHelper::GetAllFilesInFolderWithEndingSubstring(
 					}
 				}
 			}
+
+			// If propergate is on and filedata is a folder - then search this folder - (Depth first search)
+			if (bPropergate && (fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY
+				&& (fileData.cFileName[0] != '.')))
+			{
+				//Recursive
+				bool result = false;
+				const std::string propergateFolderName = folderName + fileData.cFileName + '/';
+				std::vector<std::string> folderContents = GetAllFilesInFolderWithoutEndingSubstring(
+					propergateFolderName,
+					endingSubstring,
+					bIncludeFolderpath,
+					result,
+					bPropergate);
+
+				// Add the two vector of strings togeather
+				fileStrings.insert(fileStrings.end(), folderContents.begin(), folderContents.end());
+			}
+
 		} while (::FindNextFile(hFind, &fileData));
 		::FindClose(hFind);
 	}
@@ -309,20 +328,47 @@ std::vector<std::string> FileHelper::GetAllFilesInFolderWithoutEndingSubstring(
 			{
 				const std::string fileName = fileData.cFileName;
 				// Work out the compare length
-				const size_t start = fileName.length() - endingSubstring.length();
+				const int start = fileName.length() - endingSubstring.length();
+
 				if (start > 0)
 				{
 					// If the ending substring is matching the fileName then add to the fileStrings
 					if (fileName.compare(start, endingSubstring.length(), endingSubstring) != 0)
 					{
-						fileStrings.push_back( 
-							bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+						if (fileStrings.size() < fileStrings.max_size())
+						{
+							fileStrings.push_back(
+								bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+						}
 					}
 				}
 			}
+
+			// If propergate is on and filedata is a folder - then search this folder - (Depth first search)
+			if (bPropergate && (fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY
+				&& (fileData.cFileName[0] != '.')))
+			{
+				//Recursive
+				bool result = false;
+				const std::string propergateFolderName = folderName + fileData.cFileName + '/';
+				std::vector<std::string> folderContents = GetAllFilesInFolderWithoutEndingSubstring(
+					propergateFolderName,
+					endingSubstring,
+					bIncludeFolderpath,
+					result,
+					bPropergate);
+
+				// Add the two vector of strings together - Safeguard about going over
+				if (fileStrings.size() + folderContents.size() < fileStrings.max_size())
+				{
+					fileStrings.insert(fileStrings.end(), folderContents.begin(), folderContents.end());
+				}
+			}
+
 		} while (::FindNextFile(hFind, &fileData));
 		::FindClose(hFind);
 	}
+
 
 #endif
 

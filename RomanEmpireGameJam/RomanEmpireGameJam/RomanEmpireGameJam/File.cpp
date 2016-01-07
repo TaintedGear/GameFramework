@@ -1,5 +1,8 @@
 #include "File.h"
 
+#include "Intrinsics.h"
+#include "Log.h"
+
 File::File() :
 mFilepath(""),
 mFileMode(FileMode::READ)
@@ -14,8 +17,6 @@ File::~File()
 //  (Maybe make a separate func to create file)?
 bool File::Open(const std::string& pFilepath, File::FileMode pFilemode)
 {
-	bool retVal = true;
-
 	char openMode = (char)pFilemode;
 	
 	mFilepath = pFilepath;
@@ -24,10 +25,11 @@ bool File::Open(const std::string& pFilepath, File::FileMode pFilemode)
 	if (!mFile.is_open())
 	{
 		//OutputError
-		retVal = false;
+		Log::GetLog().LogLowMsg("HELLO: " + ToString((mFile.rdstate() & std::fstream::failbit) != 0));
+		return false;
 	}
 
-	return retVal;
+	return true;
 }
 
 void File::Close()

@@ -4,14 +4,11 @@
 #include "File.h"
 #include "Log.h"
 
-#include "AssetMetaDataParser.h"
-
 //TEST
 #include "Math.h"
 
 AssetDatabase::AssetDatabase()
 {
-	mAssetFileExtensions = std::make_unique<AssetFileExtensions>();
 }
 
 
@@ -35,7 +32,8 @@ void AssetDatabase::DiscoverAssets()
 		FilePaths::FILE_PATH_ASSETS(),
 		"meta.xml",
 		true,
-		result);
+		result,
+		true);
 
 	if (!result || assetFiles.size() <= 0)
 	{
@@ -53,11 +51,15 @@ void AssetDatabase::DiscoverAssets()
 		}
 		else
 		{
-			// Create meta data file
-			CreateMetaDataFile(assetFiles[i]);
+			// Create the meta data from the new asset
+			if (!CreateMetaDataFile(assetFiles[i]))
+			{
+			//	Log::GetLog().LogCriticalMsg("Failed to create meta data file for: " + assetFiles[i]);
+			}
 		}
 	}
 	
+	mAssetMetaData.size();
 	// Simpler solution:
 	// Go through the meta data files check if the path to the file exists - if not then delete the MD
 	// If it does exist read the MD data in
@@ -79,29 +81,25 @@ void AssetDatabase::DiscoverAssets()
 bool AssetDatabase::CreateMetaDataFile(
 	const std::string& assetFilePath)
 {
-	//Check if this asset is of a valid asset type
-	// Check on AssetFileExtensions
+	// Create the meta data from this file path
+	AssetMetaData newMetaData;
+	if (!mAssetMetaDataParser.CreateMetaData(assetFilePath, newMetaData))
+	{
+		return false;
+	}
 
 	//Create a new meta data file
 	File newAssetMetaDataFile;
-	newAssetMetaDataFile.Open(assetFilePath + ".meta.xml", File::READ_WRITE_NEW);
-
-	//Create the metaDataStruct
-	AssetMetaData testData;
+	if (!newAssetMetaDataFile.Open(assetFilePath + ".meta.xml", File::READ_WRITE_NEW))
 	{
-		testData.AssetType = &std::type_index(typeid(AssetMetaData));
-		testData.AssetName = "Test";
-		testData.AssetFilePath = "SHIT";
-
-		testData.ScalarAttributes.push_back(AssetMetaDataAttribute<float>("Test", 5.f));
-		testData.VectorAttributes.push_back(AssetMetaDataAttribute<Math::FVector4>(
-			"TestV", Math::FVector4(5.f, 5.f, 0.f, 0.f)));
+		Log::GetLog().LogCriticalMsg("Failed to create meta data file for: " + assetFilePath);
+		return false;
 	}
 
-	//Create the empty attributes depending on type
+	mAssetMetaDataParser.WriteMetaDataToFile(newAssetMetaDataFile, newMetaData);
 
-	AssetMetaDataParser assetMetaDataParser;
-	assetMetaDataParser.WriteMetaData(newAssetMetaDataFile, testData);
+	//Store the metaData to the map
+	mAssetMetaData[assetFilePath] = newMetaData;
 
 	return true;
 }

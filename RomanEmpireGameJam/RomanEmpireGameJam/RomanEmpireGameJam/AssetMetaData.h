@@ -3,6 +3,8 @@
 #include "PCH.h"
 #include "Math.h"
 
+// @Future create a 'Dirty' method if any of this changes so we can serialize back to the metadata file
+
 template< class T >
 struct AssetMetaDataAttribute
 {
@@ -20,15 +22,15 @@ struct AssetMetaDataAttribute
 struct AssetMetaData
 {
 	AssetMetaData() :
-		AssetType(nullptr),
+		AssetTypeHash(-1),
 		AssetName(""),
 		AssetFilePath("")
 	{
 
 	}
 
-	//AssetType
-	std::type_index* AssetType;
+	//AssetType - Hash
+	size_t AssetTypeHash;
 	//AssetName
 	std::string AssetName;
 	//AssetFilePath

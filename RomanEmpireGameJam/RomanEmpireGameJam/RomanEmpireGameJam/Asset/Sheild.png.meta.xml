@@ -1,16 +1,7 @@
 <Asset>
-	<Type>struct AssetMetaData</Type>
-	<Name>Test</Name>
-	<Path>SHIT</Path>
+	<Type>Texture2D</Type>
+	<Name>Sheild</Name>
+	<Path>Sheild.png</Path>
 	<Attributes>
-		<Test>
-			<V>5.000000</V>
-		</Test>
-		<TestV>
-			<X>5.000000</X>
-			<Y>5.000000</Y>
-			<Z>0.000000</Z>
-			<W>0.000000</W>
-		</TestV>
 	</Attributes>
 </Asset>

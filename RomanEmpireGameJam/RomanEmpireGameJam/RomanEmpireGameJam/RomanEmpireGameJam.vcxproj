@@ -17,7 +17,7 @@
     <ClCompile Include="AssetCache.cpp" />
     <ClCompile Include="AssetCacheCollection.cpp" />
     <ClCompile Include="AssetDatabase.cpp" />
-    <ClCompile Include="AssetFileExtensions.cpp" />
+    <ClCompile Include="AssetFileTypeExtensions.cpp" />
     <ClCompile Include="AssetLoader.cpp" />
     <ClCompile Include="AssetMetaData.cpp" />
     <ClCompile Include="AssetMetaDataParser.cpp" />
@@ -55,7 +55,7 @@
     <ClInclude Include="AssetCache.h" />
     <ClInclude Include="AssetCacheCollection.h" />
     <ClInclude Include="AssetDatabase.h" />
-    <ClInclude Include="AssetFileExtensions.h" />
+    <ClInclude Include="AssetFileTypeExtensions.h" />
     <ClInclude Include="AssetLoader.h" />
     <ClInclude Include="AssetMetaData.h" />
     <ClInclude Include="AssetMetaDataParser.h" />

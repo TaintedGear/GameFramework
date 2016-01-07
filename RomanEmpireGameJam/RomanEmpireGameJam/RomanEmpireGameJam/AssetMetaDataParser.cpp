@@ -3,19 +3,104 @@
 #include "FilePaths.h"
 #include "Log.h"
 
+
+// <%s> Tag names
+const std::string AssetMetaDataParser::ASSET_TAG = "Asset";
+const std::string AssetMetaDataParser::ASSET_NAME_TAG = "Name";
+const std::string AssetMetaDataParser::ASSET_TYPE_TAG = "Type";
+const std::string AssetMetaDataParser::ASSET_PATH_TAG = "Path";
+const std::string AssetMetaDataParser::ASSET_ATTRIBUTE_TAG = "Attributes";
+
+//------------------------------------------//
+// AssetMetaDataParser::AssetMetaDataParser				
+//------------------------------------------//
 AssetMetaDataParser::AssetMetaDataParser() :
-mTabLevel(0)
+mTabLevel(0),
+mAssetFileTypeExtensions(nullptr)
 {
+	mAssetFileTypeExtensions = std::make_unique<AssetFileTypeExtensions>();
 }
 
+//------------------------------------------//
+// AssetMetaDataParser::~AssetMetaDataParser				
+//------------------------------------------//
 AssetMetaDataParser::~AssetMetaDataParser()
 {
+
+}
+
+//------------------------------------------//
+// AssetMetaDataParser::CreateMetaData				
+//------------------------------------------//
+bool AssetMetaDataParser::CreateMetaData(const std::string& assetFilePath, struct AssetMetaData& metaData)
+{
+	//Log::GetLog().LogCriticalMsg(assetFilePath);
+
+	// Sanity check string
+	if (assetFilePath.length() <= 0)
+	{
+		//Invalid file path
+		// Failed to create meta data for this file path
+		Log::GetLog().LogCriticalMsg("AssetFilePath is invalid");
+		return false;
+	}
+
+	//Grab extension
+	// substring the last .*
+	const std::string::size_type extDotPos = (assetFilePath.find_last_of('.') + 1); // stop the dot
+	if (extDotPos == std::string::npos)
+	{
+		// Couldnt find the last '.' for the file ext
+		Log::GetLog().LogCriticalMsg("Failed to find file ext");
+		return false;
+	}
+
+	//Run that through the assetFileExt class - if not valid return log
+	const std::string ext = assetFilePath.substr(extDotPos);
+	if (mAssetFileTypeExtensions == nullptr)
+	{
+		return false;
+	}
+
+	size_t typeHash = -1;
+	if (!mAssetFileTypeExtensions->ExtensionIsOfAssetType(ext, typeHash))
+	{
+		// Log invalid asset type
+		Log::GetLog().LogCriticalMsg("Asset type is invalid");
+		return false;
+	}
+	if (typeHash == -1)
+	{
+		Log::GetLog().LogCriticalMsg("Asset type is invalid");
+		return false;
+	}
+
+	//Grab filename
+	const std::string::size_type pathLength = FilePaths::FILE_PATH_ASSETS().length();
+	const std::string filename = assetFilePath.substr(
+		pathLength,
+		//Find string length remaining from filepath then take away the number of chars in the 'ext'
+		(assetFilePath.length() - pathLength) - (assetFilePath.length() - (extDotPos - 1)));
+
+	//Grab filepath
+	const std::string filepath = assetFilePath.substr(pathLength);
+
+	//From extension create default attributes
+
+	AssetMetaData newMetaData;
+	newMetaData.AssetTypeHash = typeHash;
+	newMetaData.AssetName = filename;
+	newMetaData.AssetFilePath = filepath;
+
+	metaData = newMetaData;
+
+	return true;
 }
 
 //------------------------------------------//
 // AssetMetaDataParser::WriteMetaData				
 //------------------------------------------//
-bool AssetMetaDataParser::WriteMetaData(
+bool AssetMetaDataParser::WriteMetaDataToFile(
 class File& metaDataFile,
 	const struct AssetMetaData& metaData)
 {
@@ -32,7 +117,7 @@ class File& metaDataFile,
 	}
 
 	//Write <Asset>
-	metaDataFile.Write(Tab() + "<Asset>\n");
+	metaDataFile.Write(Tab() + "<" + ASSET_TAG + ">\n");
 	AddTabLevel();
 
 	//Write common data
@@ -47,7 +132,7 @@ class File& metaDataFile,
 
 	//Write </Asset>
 	RemoveTabLevel();
-	metaDataFile.Write(Tab() + "</Asset>\n");
+	metaDataFile.Write(Tab() + "</" + ASSET_TAG + ">\n");
 
 	return true;
 }
@@ -55,10 +140,24 @@ class File& metaDataFile,
 //------------------------------------------//
 // AssetMetaDataParser::ReadMetaData				
 //------------------------------------------//
-bool AssetMetaDataParser::ReadMetaData(
-class File& metaDataFile,
-struct AssetMetaData& metaData)
+bool AssetMetaDataParser::ReadMetaDataFromFile(
+	class File& metaDataFile,
+	struct AssetMetaData& metaData)
 {
+	//Check file is valid
+	if (!CheckMetaDataFileIsValid(metaDataFile))
+	{
+		return false;
+	}
+
+	//Read everything between <Asset> and </Asset>
+	// AssetTypeName
+	// AssetName
+	// AssetPath
+	// Attributes
+	// Read <%s>%s</%s>
+	//metaDataFile.Read()
+
 	return true;
 }
 
@@ -111,11 +210,18 @@ class File& metaDataFile,
 	const struct AssetMetaData& metaData)
 {
 	//Write the asset type
-	metaDataFile.Write(Tab() + "<Type>");
+	metaDataFile.Write(Tab() + "<" + ASSET_TYPE_TAG + ">");
 
-	metaDataFile.Write(metaData.AssetType != nullptr ? metaData.AssetType->name() : "Invalid");
+	// Will write out invalid if type hash cant be matched with assettype
+	std::string assetName = "Invalid";
+	if (!mAssetFileTypeExtensions->HashIsOfAssetName(metaData.AssetTypeHash, assetName))
+	{
+		//Log that we cant determine type
+	}
 
-	metaDataFile.Write("</Type>\n");
+	metaDataFile.Write(assetName);
+
+	metaDataFile.Write("</" + ASSET_TYPE_TAG + ">\n");
 
 	return true;
 }
@@ -128,13 +234,13 @@ class File& metaDataFile,
 	const struct AssetMetaData& metaData)
 {
 	// Start name
-	metaDataFile.Write(Tab() + "<Name>");
+	metaDataFile.Write(Tab() + "<" + ASSET_NAME_TAG + ">");
 
 	//Write the filename
 	metaDataFile.Write(metaData.AssetName);
 
 	//End name
-	metaDataFile.Write("</Name>\n");
+	metaDataFile.Write("</" + ASSET_NAME_TAG + ">\n");
 
 	return true;
 }
@@ -147,12 +253,12 @@ class File& metaDataFile,
 	const struct AssetMetaData& metaData)
 {
 	// Start Path
-	metaDataFile.Write(Tab() + "<Path>");
+	metaDataFile.Write(Tab() + "<" + ASSET_PATH_TAG + ">");
 
 	metaDataFile.Write(metaData.AssetFilePath);
 
 	//End Path
-	metaDataFile.Write("</Path>\n");
+	metaDataFile.Write("</" + ASSET_PATH_TAG + ">\n");
 
 	return true;
 }
@@ -162,7 +268,7 @@ class File& metaDataFile,
 //------------------------------------------//
 bool AssetMetaDataParser::WriteAssetAttributes(class File& metaDataFile, const struct AssetMetaData& metaData)
 {
-	metaDataFile.Write(Tab() + "<Attributes>\n");
+	metaDataFile.Write(Tab() + "<" + ASSET_ATTRIBUTE_TAG + ">\n");
 	AddTabLevel();
 
 	// Write the scalar attributes
@@ -212,7 +318,7 @@ bool AssetMetaDataParser::WriteAssetAttributes(class File& metaDataFile, const s
 	}
 
 	RemoveTabLevel();
-	metaDataFile.Write(Tab() + "</Attributes>\n");
+	metaDataFile.Write(Tab() + "</" + ASSET_ATTRIBUTE_TAG + ">\n");
 
 	return true;
 }

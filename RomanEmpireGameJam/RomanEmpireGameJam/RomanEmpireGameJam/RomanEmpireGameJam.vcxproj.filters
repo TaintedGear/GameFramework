@@ -186,10 +186,10 @@
     <ClCompile Include="AssetDatabase.cpp">
       <Filter>Source Files\Asset</Filter>
     </ClCompile>
-    <ClCompile Include="AssetFileExtensions.cpp">
+    <ClCompile Include="AssetMetaData.cpp">
       <Filter>Source Files\Asset</Filter>
     </ClCompile>
-    <ClCompile Include="AssetMetaData.cpp">
+    <ClCompile Include="AssetFileTypeExtensions.cpp">
       <Filter>Source Files\Asset</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,9 +302,6 @@
     <ClInclude Include="AssetCacheCollection.h">
       <Filter>Header Files\Asset\AssetCache</Filter>
     </ClInclude>
-    <ClInclude Include="AssetFileExtensions.h">
-      <Filter>Header Files\Asset</Filter>
-    </ClInclude>
     <ClInclude Include="AssetMetaDataParser.h">
       <Filter>Header Files\Asset</Filter>
     </ClInclude>
@@ -312,6 +309,9 @@
       <Filter>Header Files\Asset</Filter>
     </ClInclude>
     <ClInclude Include="AssetMetaData.h">
+      <Filter>Header Files\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetFileTypeExtensions.h">
       <Filter>Header Files\Asset</Filter>
     </ClInclude>
   </ItemGroup>

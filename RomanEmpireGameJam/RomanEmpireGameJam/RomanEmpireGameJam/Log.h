@@ -24,22 +24,22 @@ public:
 	static Log& GetLog();
 
 #ifdef _DEBUG
-	void LogLowMsg(std::string pMsg);
-	void LogMediumMsg(std::string pMsg);
-	void LogHighMsg(std::string pMsg);
-	void LogCriticalMsg(std::string pMsg);
+	void LogLowMsg(const std::string& pMsg);
+	void LogMediumMsg(const std::string& pMsg);
+	void LogHighMsg(const std::string& pMsg);
+	void LogCriticalMsg(const std::string& pMsg);
 #else // _DEBUG
-	void LogLowMsg(std::string pMsg) {};
-	void LogMediumMsg(std::string pMsg) {};
-	void LogHighMsg(std::string pMsg) {};
-	void LogCriticalMsg(std::string pMsg) {};
+	void LogLowMsg(const std::string& pMsg) {};
+	void LogMediumMsg(const std::string& pMsg) {};
+	void LogHighMsg(const std::string& pMsg) {};
+	void LogCriticalMsg(const std::string& pMsg) {};
 #endif // _DEBUG
 
 	void WriteSeperator();
 	void PrintVerbositySetting();
 private:
 	File mLogFile;
-	void Write(std::string pWriteData);
+	void Write(const std::string& pWriteData);
 	bool CheckVerbosity(const VerbositySettings pVerbosePriority);
 };
 

@@ -41,10 +41,10 @@ Log& Log::GetLog()
 //------------------------------------------//
 //				 Log::Write				
 //------------------------------------------//
-void Log::Write(std::string pWriteData)
+void Log::Write(const std::string& pWriteData)
 {
-	pWriteData = pWriteData + "\n";
-	mLogFile.Write(pWriteData.c_str());
+	const std::string writeDataNewLine = pWriteData + "\n";
+	mLogFile.Write(writeDataNewLine.c_str());
 }
 
 //------------------------------------------//
@@ -59,7 +59,7 @@ void Log::WriteSeperator()
 //				Log::LogLowMsg				
 //------------------------------------------//
 #ifdef _DEBUG
-void Log::LogLowMsg(std::string pMsg)
+void Log::LogLowMsg(const std::string& pMsg)
 {
 	if (CheckVerbosity(VerbositySettings::Low))
 	{
@@ -72,7 +72,7 @@ void Log::LogLowMsg(std::string pMsg)
 //				Log::LogMediumMsg				
 //------------------------------------------//
 #ifdef _DEBUG
-void Log::LogMediumMsg(std::string pMsg)
+void Log::LogMediumMsg(const std::string& pMsg)
 {
 	if (CheckVerbosity(VerbositySettings::Medium))
 	{
@@ -85,7 +85,7 @@ void Log::LogMediumMsg(std::string pMsg)
 //				Log::LogHighMsg				
 //------------------------------------------//
 #ifdef _DEBUG
-void Log::LogHighMsg(std::string pMsg)
+void Log::LogHighMsg(const std::string& pMsg)
 {
 	if (CheckVerbosity(VerbositySettings::High))
 	{
@@ -98,7 +98,7 @@ void Log::LogHighMsg(std::string pMsg)
 //				Log::LogCriticalMsg				
 //------------------------------------------//
 #ifdef _DEBUG
-void Log::LogCriticalMsg(std::string pMsg)
+void Log::LogCriticalMsg(const std::string& pMsg)
 {
 	if (CheckVerbosity(VerbositySettings::Critical))
 	{

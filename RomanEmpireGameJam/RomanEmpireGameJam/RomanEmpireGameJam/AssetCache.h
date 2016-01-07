@@ -30,7 +30,7 @@ public:
 	std::shared_ptr<Asset> GetAsset(const std::string& filepath) override;
 
 private:
-	// Holds the assets with the filepath as the key
+	// Key: Filepath, Value: Asset<T>
 	std::map< std::string, std::weak_ptr<T>> mAssetCache;
 	
 	// Holds the asset loader 

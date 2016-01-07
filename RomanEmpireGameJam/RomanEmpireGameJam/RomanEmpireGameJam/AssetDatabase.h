@@ -2,7 +2,8 @@
 
 #include "PCH.h"
 #include "Asset.h"
-#include "AssetFileExtensions.h"
+#include "AssetMetaData.h"
+#include "AssetMetaDataParser.h"
 
 // Will discover assets on load to store and create meta data for asset files
 // Will hold all the AssetCache's - loaders and pools
@@ -21,9 +22,9 @@ private:
 	bool CreateMetaDataFile(const std::string& assetFilePath);
 	bool ReadMetaDataFile(const std::string& metaDataFilePath);
 
-	std::unique_ptr<class AssetFileExtensions> mAssetFileExtensions;
-
 	// Holds all the metadata of the assets in the project
 	std::map< std::string, AssetMetaData > mAssetMetaData;
+
+	class AssetMetaDataParser mAssetMetaDataParser;
 };
 

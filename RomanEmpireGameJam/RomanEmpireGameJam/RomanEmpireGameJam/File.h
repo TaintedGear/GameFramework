@@ -15,7 +15,7 @@ public:
 		READ_WRITE_APPEND = std::ios::in | std::ios::out | std::ios::app,
 		READ_WRITE_NEW = std::ios::in | std::ios::out | std::ios::trunc
 	};
-
+	
 	File();
 	~File();
 

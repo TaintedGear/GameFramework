@@ -56,6 +56,5 @@ public:
 	bool SeperateFileNameFromFilePath(const std::string& pFullPath, std::string& pFileName);
 
 private:
-
 };
 

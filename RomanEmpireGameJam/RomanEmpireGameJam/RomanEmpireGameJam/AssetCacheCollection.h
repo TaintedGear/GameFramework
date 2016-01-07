@@ -25,7 +25,8 @@ public:
 	std::shared_ptr<T> GetAsset(const std::string& filepath);
 private:
 
-	std::map< std::type_index, std::unique_ptr<class IAssetCache> > mAssetCaches;
+	// Type Hash, AssetCache Interface
+	std::map< size_t, std::unique_ptr<class IAssetCache> > mAssetCaches;
 };
 
 //------------------------------------------//
@@ -38,7 +39,7 @@ bool AssetCacheCollection::CreateAssetCache(std::shared_ptr<AssetLoader<T>> asse
 
 	//Check if we already have this in our map
 	const std::type_index typeIndex = typeid(T);
-	if (mAssetCaches.count(typeIndex) > 0)
+	if (mAssetCaches.count(typeIndex.hash_code()) > 0)
 	{
 		// Log that already have this in the cache
 		// Maybe do a check to see its valid
@@ -61,7 +62,7 @@ bool AssetCacheCollection::CreateAssetCache(std::shared_ptr<AssetLoader<T>> asse
 	newAssetCache = new AssetCache<T>(assetLoader);
 
 	// Store in the asset cache
-	mAssetCaches[typeIndex] = std::unique_ptr<IAssetCache>(newAssetCache);
+	mAssetCaches[typeIndex.hash_code()] = std::unique_ptr<IAssetCache>(newAssetCache);
 
 	return true;
 }
@@ -79,13 +80,13 @@ AssetCacheCollection::GetAsset(const std::string& filepath)
 	const std::type_index typeIndex = typeid(T);
 
 	//Check if we have a cache made for this asset
-	if (mAssetCaches.count(typeIndex) <= 0)
+	if (mAssetCaches.count(typeIndex.hash_code()) <= 0)
 	{
 		Log::GetLog().LogCriticalMsg("Failed to get asset as cache for this type does not exist");
 		return nullptr;
 	}
 
-	if (mAssetCaches[typeIndex] == nullptr)
+	if (mAssetCaches[typeIndex.hash_code()] == nullptr)
 	{
 		//Log that the cache is null
 		return nullptr;
