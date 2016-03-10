@@ -1,10 +1,12 @@
 #pragma once
 
+#include "System.h"
+#include "Renderer.h"
 #include "PCH.h"
 #include "Window.h"
 #include "Math.h"
 
-class RenderingSystem
+class RenderingSystem : public System
 {
 public:
 	enum RendererFlags { SOFTWARE_RENDERED = SDL_RENDERER_SOFTWARE,
@@ -24,22 +26,22 @@ public:
 	{
 		int RenderFlags = SOFTWARE_RENDERED;
 		int ImageFlags = IMG_ALL;
-		// This could be a Uint32 and we just bit shift but for simplicity sake
+		// This could be a Uint32 and we just bit shift but for simplicity sake - Change this to colour
 		Uint8 RenderDrawColour[4];
 	};
 
 	RenderingSystem();
 	~RenderingSystem();
 
-	bool CreateSystem(std::shared_ptr<Window> pRenderWindow, const RendererInfo& pRenderInfo);
-	void DestroySystem();
-
-	//bool LoadTexture(std::shared_ptr<Texture> pTexture);
+	bool StartupSystem(std::shared_ptr<Window> pRenderWindow, const RendererInfo& pRenderInfo);
+	void ShutdownSystem();
 
 	RendererInfo GetRenderInfo();
 
+	std::weak_ptr<Renderer> GetRendererWeak();
+
 private:
 	RendererInfo mRenderOptions;
-	SDL_Renderer* mRenderer;
+	class std::shared_ptr<Renderer> mRenderer;
 };
 

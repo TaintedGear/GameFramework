@@ -1,59 +1,16 @@
 TODO: 
 AssetManager
-- Handle asset release on ref_count <= 1
 - CACHE ALL THE FILENAMES IN THE ASSET FOLDER - INSTEAD OF READING TO DISK?
-- CACHE ALLOCATE THE MEMORY FOR ASSETS? -YES (Pg. 291)
-- Handle assets with file paths not file names ( Change the finding of the file to be recursive through child directories )!
 - Add a load and stay feature to the asset manager, so that they are kept for the lifetime of the app, unless called otherwise
 - Add debug to print all assets currently loaded or stored
-- Change assets so we create them but dont load until told?
-
-- 1) loader creates asset pool object which can be stored in the cache
-- 2) loader turns to a factory and also holds the asset pool
-
-- CHANGE HOW I HANDLE THE UN USED MEMORY IN THE POOL AND HOW WE FIND IT
-- ALSO INCLUDE THE IF THINGS NEED TO BE LEFT LOADED AND PERSIST ASSETS;
-- Change how I handle the asset loader injectors to just be a vector of systems, and the child constructor asks for the dependancies
-
-(Asset management broken down to)
-Cache: AssetCache - Holds the loaders and AssetPools - Provides interface to assets
-Pool: AssetPool - TODO; Holds the actual assets 
-Proxy: AssetFinder - Proxy to other classes to retreive assets from the asset cache
-Loaders: AssetFactory - Creates / Loads the assets and spits them out to the relevant pool determined by the cache.
-
-MemoryManager
--Create a stack allocator (Might be a vector)
--Pool allocators
--Double ended stack allocator
-- Chunky resource allocators (pg 293)
+- Create the attribute code to the MetaData file so we can seralize useful infomation
 
 FileManager
 - Add async loading of files
 
-(EntityFactory) - (Observer pattern) / (Proxy) / (Key Pattern) Entity holds a bitKey for its components (Systems go through them and see if its
-valid to do operations on it)
-- ActorFactory + ComponentFactory
-- (World Entity Factory), Allows for persistance actors to live across multiple levels;
-- (Level Entity Factory), Allows for local level actors 
-
-System create a component mapper?
-
 Systems
-- Redefine how they work!
+- 
 
-
-MOVE AWAY FROM ACTOR - USE ENTITY INSTEAD!
-
+Ref:
 Entity needs to refer to as a key of its components
 http://gamedev.stackexchange.com/questions/31473/role-of-systems-in-entity-systems-architecture
-
-EntityFactory - poops out proxy interfaces to the people who want to spawn entities (PROXY PATTERN)
-EntityFactory -> InterfaceFactory(World) -> InterfaceFactory(Level) -> InterfaceFactory(Entities); 
-
-Store as a multimap with entityKey? (Allows systems to quickly retreive all the entities they care about when needing to update ( Or do we just got with 0(N) approach?)- This makes it simplier when we get to the adding and removing of components dynamically
-
-Return the assetHandle created as a sharedPtr
-
-(To stop passing the factory down the factory just updates through its proxies and sees if any of them are pending an entity) (MAY NOT LIKE THIS IDEA COS NOW WE HAVE TO WAIT TO RETREIVE THE ENTITY BLURG)
-
-(Still allows for rendering, movement etc to be done in systems) and allows the gamePlay to be a slightly lower level then those core systems)

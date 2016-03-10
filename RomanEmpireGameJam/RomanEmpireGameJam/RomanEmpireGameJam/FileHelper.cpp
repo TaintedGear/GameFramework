@@ -53,7 +53,7 @@ std::vector<std::string> FileHelper::GetAllFilesInFolder(
 			if (!(fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
 				fileStrings.push_back(
-					bIncludeFolderpath ? pFolderName + fileData.cFileName : fileData.cFileName );
+					bIncludeFolderpath ? pFolderName + fileData.cFileName : fileData.cFileName);
 			}
 		} while (::FindNextFile(hFind, &fileData));
 		::FindClose(hFind);
@@ -82,15 +82,15 @@ bool FileHelper::CheckFolderExists(const std::string& pDirectory)
 	{
 		return false;  //something is wrong with your path!
 	}
-	
+
 	if (ftyp & FILE_ATTRIBUTE_DIRECTORY)
 	{
 		return true;   // this is a directory!
 	}
-	
+
 #endif
 
-	return false; 
+	return false;
 }
 
 //------------------------------------------//
@@ -110,7 +110,10 @@ bool FileHelper::CreateFolder(const std::string& pDirectory)
 //------------------------------------------//
 // FileHelper::FindFilePathInFolder(NOT AS DESCRIBED) -- Can be exspensive if the directory includes alot of children (Also generally expensive with string matching)			
 //------------------------------------------//
-bool FileHelper::FindFilenameFilepathInFolder(const std::string& pFolderDir, const std::string& pFilename, std::vector<std::string>& pMatchingFilepaths)
+bool FileHelper::FindFilenameFilepathInFolder(
+	const std::string& pFolderDir,
+	const std::string& pFilename,
+	std::vector<std::string>& pMatchingFilepaths)
 {
 	bool bResult = true;
 
@@ -257,8 +260,17 @@ std::vector<std::string> FileHelper::GetAllFilesInFolderWithEndingSubstring(
 					//If the ending substring is matching the fileName then add to the fileStrings
 					if (fileName.compare(start, endingSubstring.length(), endingSubstring) == 0)
 					{
-						fileStrings.push_back(
-							bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+						if (fileStrings.size() + 1 < fileStrings.max_size())
+						{
+							fileStrings.push_back(
+								bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+						}
+						else
+						{
+							Log::GetLog().LogHighMsg("Reached max number of files loaded in this directory");
+							return fileStrings;
+						}
+
 					}
 				}
 			}
@@ -277,8 +289,16 @@ std::vector<std::string> FileHelper::GetAllFilesInFolderWithEndingSubstring(
 					result,
 					bPropergate);
 
-				// Add the two vector of strings togeather
-				fileStrings.insert(fileStrings.end(), folderContents.begin(), folderContents.end());
+				// Add the two vector of strings together - Safeguard about going over
+				if (fileStrings.size() + folderContents.size() < fileStrings.max_size())
+				{
+					fileStrings.insert(fileStrings.end(), folderContents.begin(), folderContents.end());
+				}
+				else
+				{
+					Log::GetLog().LogHighMsg("Reached max number of files loaded in this directory");
+					return fileStrings;
+				}
 			}
 
 		} while (::FindNextFile(hFind, &fileData));
@@ -299,11 +319,11 @@ std::vector<std::string> FileHelper::GetAllFilesInFolderWithEndingSubstring(
 // FileHelper::GetAllFilesInFolderWithoutEndingSubstring				
 //------------------------------------------//
 std::vector<std::string> FileHelper::GetAllFilesInFolderWithoutEndingSubstring(
-		const std::string& folderName,
-		const std::string& endingSubstring,
-		bool bIncludeFolderpath,
-		bool& bResult,
-		bool bPropergate /*= false */)
+	const std::string& folderName,
+	const std::string& endingSubstring,
+	bool bIncludeFolderpath,
+	bool& bResult,
+	bool bPropergate /*= false */)
 {
 
 	std::vector<std::string> fileStrings;
@@ -327,20 +347,35 @@ std::vector<std::string> FileHelper::GetAllFilesInFolderWithoutEndingSubstring(
 			if (!(fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 			{
 				const std::string fileName = fileData.cFileName;
-				// Work out the compare length
-				const int start = fileName.length() - endingSubstring.length();
 
-				if (start > 0)
+				// Check if the fileName is larger then the substring length
+				if (fileName.length() >= endingSubstring.length())
 				{
-					// If the ending substring is matching the fileName then add to the fileStrings
-					if (fileName.compare(start, endingSubstring.length(), endingSubstring) != 0)
+					// Work out the compare length
+					const int start = fileName.length() - endingSubstring.length();
+					if (start >= 0)
 					{
-						if (fileStrings.size() < fileStrings.max_size())
+						// If the ending substring is matching the fileName then add to the fileStrings
+						if (fileName.compare(start, endingSubstring.length(), endingSubstring) != 0)
 						{
-							fileStrings.push_back(
-								bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+							if (fileStrings.size() < fileStrings.max_size())
+							{
+								fileStrings.push_back(
+									bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
+							}
+							else
+							{
+								Log::GetLog().LogHighMsg("Reached max number of files loaded in this directory");
+								return fileStrings;
+							}
 						}
 					}
+				}
+				else
+				{
+					// FileName is smaller then the ending substring so push back
+					fileStrings.push_back(
+						bIncludeFolderpath ? folderName + fileData.cFileName : fileData.cFileName);
 				}
 			}
 
@@ -362,6 +397,11 @@ std::vector<std::string> FileHelper::GetAllFilesInFolderWithoutEndingSubstring(
 				if (fileStrings.size() + folderContents.size() < fileStrings.max_size())
 				{
 					fileStrings.insert(fileStrings.end(), folderContents.begin(), folderContents.end());
+				}
+				else
+				{
+					Log::GetLog().LogHighMsg("Reached max number of files loaded in this directory");
+					return fileStrings;
 				}
 			}
 

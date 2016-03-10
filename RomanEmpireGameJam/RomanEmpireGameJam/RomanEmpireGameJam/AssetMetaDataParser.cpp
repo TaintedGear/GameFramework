@@ -62,14 +62,14 @@ bool AssetMetaDataParser::CreateMetaData(const std::string& assetFilePath, struc
 		return false;
 	}
 
-	size_t typeHash = -1;
+	std::size_t typeHash = 0;
 	if (!mAssetFileTypeExtensions->ExtensionIsOfAssetType(ext, typeHash))
 	{
 		// Log invalid asset type
 		Log::GetLog().LogCriticalMsg("Asset type is invalid");
 		return false;
 	}
-	if (typeHash == -1)
+	if (typeHash == 0)
 	{
 		Log::GetLog().LogCriticalMsg("Asset type is invalid");
 		return false;
@@ -85,7 +85,7 @@ bool AssetMetaDataParser::CreateMetaData(const std::string& assetFilePath, struc
 	//Grab filepath
 	const std::string filepath = assetFilePath.substr(pathLength);
 
-	//From extension create default attributes
+	//From extension create default attributes - TODO
 
 	AssetMetaData newMetaData;
 	newMetaData.AssetTypeHash = typeHash;
@@ -112,7 +112,7 @@ class File& metaDataFile,
 	// Check if the file is new and cleared
 	if (metaDataFile.GetFilemode() != File::READ_WRITE_NEW)
 	{
-		Log::GetLog().LogHighMsg("MetaDataFile is not a empty.");
+		Log::GetLog().LogHighMsg("MetaDataFile is not empty.");
 		return false;
 	}
 
@@ -156,7 +156,67 @@ bool AssetMetaDataParser::ReadMetaDataFromFile(
 	// AssetPath
 	// Attributes
 	// Read <%s>%s</%s>
-	//metaDataFile.Read()
+	// (Read everything) get the key value <%k> %v </%k> - store into map - then process
+
+	//HARD CODED FOR NWO UNTIL I CAN THINK OF AN ELEGANT SOLOUTION - Just wanna start building a game
+	std::string fileContents;
+	if (!metaDataFile.ReadFileContents(fileContents))
+	{
+		return false;
+	}
+
+	if (fileContents.length() <= 0)
+	{
+		return false;
+	}
+
+	std::size_t keyStartPos = 0;
+	std::size_t keyEndPos = 0;
+
+	std::string type = "";
+	std::string name = "";
+	std::string path = "";
+
+	keyStartPos = fileContents.find("<Type>") + 6;
+	keyEndPos = fileContents.find("</Type>");
+
+	if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
+	{
+		type = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
+	}
+	
+	keyStartPos = fileContents.find("<Name>") + 6;
+	keyEndPos = fileContents.find("</Name>");
+
+	if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
+	{
+		name = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
+	}
+
+	keyStartPos = fileContents.find("<Path>") + 6;
+	keyEndPos = fileContents.find("</Path>");
+
+	if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
+	{
+		path = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
+	}
+
+	// Determine type hash
+	std::size_t typeHash = 0;
+	if (!mAssetFileTypeExtensions->AssetTypeNameIsOfHash(type, typeHash))
+	{
+		return false;
+	}
+
+	if (typeHash == 0)
+	{
+		return false;
+	}
+
+	//Fill out info
+	metaData.AssetTypeHash = typeHash;
+	metaData.AssetName = name;
+	metaData.AssetFilePath = path;
 
 	return true;
 }
@@ -214,7 +274,7 @@ class File& metaDataFile,
 
 	// Will write out invalid if type hash cant be matched with assettype
 	std::string assetName = "Invalid";
-	if (!mAssetFileTypeExtensions->HashIsOfAssetName(metaData.AssetTypeHash, assetName))
+	if (!mAssetFileTypeExtensions->HashIsOfAssetTypeName(metaData.AssetTypeHash, assetName))
 	{
 		//Log that we cant determine type
 	}

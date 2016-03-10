@@ -85,6 +85,12 @@
     <Filter Include="Source Files\Asset\AssetCache">
       <UniqueIdentifier>{1e3a0ee0-c142-4b21-8199-e75ba157f218}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{0b71e96b-7752-4d60-ac45-53d1ba6a5a74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer">
+      <UniqueIdentifier>{3b3b6fac-b363-4554-bd46-660df36880d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -191,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="AssetFileTypeExtensions.cpp">
       <Filter>Source Files\Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="AssetFileTypeExtensions.h">
       <Filter>Header Files\Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

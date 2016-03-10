@@ -19,6 +19,9 @@ protected:
 	virtual void Draw() override;
 
 	//World object
-	std::shared_ptr<THWorld> mWorld;
+	std::shared_ptr<class THWorld> mWorld;
+
+	//Test
+	std::shared_ptr<class Texture2D> test;
 };
 

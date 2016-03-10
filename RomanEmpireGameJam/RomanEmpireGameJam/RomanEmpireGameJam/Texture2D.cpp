@@ -6,4 +6,8 @@ Texture2D::Texture2D()
 
 Texture2D::~Texture2D()
 {
+	if (SDLTexture)
+	{
+		SDL_DestroyTexture(SDLTexture);
+	}
 }

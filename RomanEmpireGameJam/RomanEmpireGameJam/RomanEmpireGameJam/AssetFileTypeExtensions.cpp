@@ -18,7 +18,9 @@ AssetFileTypeExtensions::AssetFileTypeExtensions()
 //------------------------------------------//
 void AssetFileTypeExtensions::CreateAssetTypeHashMap()
 {
-	mAssetTypeString[typeid(Texture2D).hash_code()] = "Texture2D";
+	std::size_t textureHash = typeid(Texture2D).hash_code();
+	mAssetTypeString[textureHash] = "Texture2D";
+	mAssetTypeHash["Texture2D"] = textureHash;
 }
 
 template<>
@@ -52,12 +54,12 @@ const bool AssetFileTypeExtensions::ExtensionIsOfAssetType(const std::string& ex
 	typeHash = mAssetExtensions.find(extension)->second;
 
 	return true;
-}
+}      
 
 //------------------------------------------//
 // AssetFileTypeExtensions::HashIsOfAssetName				
 //------------------------------------------//
-const bool AssetFileTypeExtensions::HashIsOfAssetName(const size_t typeHash, std::string& assetName)
+const bool AssetFileTypeExtensions::HashIsOfAssetTypeName(const size_t typeHash, std::string& assetName)
 {
 	if (mAssetTypeString.count(typeHash) <= 0)
 	{
@@ -65,6 +67,21 @@ const bool AssetFileTypeExtensions::HashIsOfAssetName(const size_t typeHash, std
 	}
 
 	assetName = mAssetTypeString.find(typeHash)->second;
+
+	return true;
+}
+
+//------------------------------------------//
+// AssetFileTypeExtensions::AssetTypeIsofHash				
+//------------------------------------------//
+const bool AssetFileTypeExtensions::AssetTypeNameIsOfHash(const std::string& assetType, size_t& typeHash)
+{
+	if (mAssetTypeHash.count(assetType) <= 0)
+	{
+		return false;
+	}
+
+	typeHash = mAssetTypeHash.find(assetType)->second;
 
 	return true;
 }

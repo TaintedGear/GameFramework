@@ -18,6 +18,9 @@ public:
 
 	void DiscoverAssets(); 
 
+	bool DoesAssetExist(const std::string& assetPath);
+	bool GetAssetMetaData(const std::string& assetPath, AssetMetaData& assetMetaData);
+
 private:
 	bool CreateMetaDataFile(const std::string& assetFilePath);
 	bool ReadMetaDataFile(const std::string& metaDataFilePath);

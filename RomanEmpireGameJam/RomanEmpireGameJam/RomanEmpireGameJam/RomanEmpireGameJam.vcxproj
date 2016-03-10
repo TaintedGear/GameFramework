@@ -36,6 +36,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="RenderableComponent.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="PCH.h" />
     <ClInclude Include="RenderableComponent.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SpriteComponent.h" />

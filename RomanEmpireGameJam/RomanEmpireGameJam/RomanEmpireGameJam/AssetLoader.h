@@ -13,11 +13,22 @@ public:
 	AssetLoader() {};
 	virtual ~AssetLoader() {};
 
+	virtual bool StartupLoader();
+
 	virtual bool LoadAsset( std::shared_ptr<T> unloadedAsset ) = 0;
 	virtual void UnloadAsset(T* asset) = 0;
 
 protected:
 };
+
+//------------------------------------------//
+// AssetLoader<T>::StartupLoader				
+//------------------------------------------//
+template <class T>
+bool AssetLoader<T>::StartupLoader()
+{
+	return true;
+}
 
 
 

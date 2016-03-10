@@ -4,6 +4,11 @@ class System
 {
 public:
 	System();
-	~System();
+	virtual ~System();
+
+	virtual bool StartupSystem();
+	virtual void ShutdownSystem();
+
+	//TODO
 };
 

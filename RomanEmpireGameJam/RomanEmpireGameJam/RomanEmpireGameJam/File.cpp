@@ -25,7 +25,6 @@ bool File::Open(const std::string& pFilepath, File::FileMode pFilemode)
 	if (!mFile.is_open())
 	{
 		//OutputError
-		Log::GetLog().LogLowMsg("HELLO: " + ToString((mFile.rdstate() & std::fstream::failbit) != 0));
 		return false;
 	}
 
@@ -75,7 +74,7 @@ bool File::Write(const std::string& pWriteData)
 	return Write(pWriteData.c_str());
 }
 
-bool File::Read(char* pReadData, int pStartPos, int pEndPos)
+bool File::Read(char* pReadData, const int& pStartPos, const int& pEndPos)
 {
 	bool retVal = true;
 
@@ -105,6 +104,25 @@ bool File::Read(char* pReadData, int pStartPos, int pEndPos)
 }
 
 //------------------------------------------//
+// File::GetLine				
+//------------------------------------------//
+bool File::GetLine(std::string& lineData)
+{
+	if (mFile)
+	{
+		if (!mFile.eof())
+		{
+			std::getline(mFile, lineData);
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//------------------------------------------//
 // File::GetFilepath				
 //------------------------------------------//
 const std::string File::GetFilepath() const 
@@ -126,4 +144,29 @@ const File::FileMode File::GetFilemode() const
 const bool File::IsOpen() const
 {
 	return mFile.is_open();
+}
+
+//------------------------------------------//
+// File::ReadFileContents				
+//------------------------------------------//
+bool File::ReadFileContents(std::string& contents)
+{
+	// THIS IS UNSAFE 
+	if (mFile)
+	{
+		//Get to the correct position in the file 
+		mFile.seekg(0, 0);
+		
+		while (!mFile.eof())
+		{
+			std::string line = "";
+			getline(mFile, line);
+
+			contents += line;
+		}
+
+		return true;
+	}
+
+	return false;
 }

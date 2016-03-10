@@ -98,8 +98,14 @@ bool AssetDatabase::CreateMetaDataFile(
 
 	mAssetMetaDataParser.WriteMetaDataToFile(newAssetMetaDataFile, newMetaData);
 
+	// Check if we already have this
+	if (mAssetMetaData.count(newMetaData.AssetFilePath) >= 1)
+	{
+		return false;
+	}
+
 	//Store the metaData to the map
-	mAssetMetaData[assetFilePath] = newMetaData;
+	mAssetMetaData[newMetaData.AssetFilePath] = newMetaData;
 
 	return true;
 }
@@ -110,5 +116,51 @@ bool AssetDatabase::CreateMetaDataFile(
 bool AssetDatabase::ReadMetaDataFile(
 	const std::string& metaDataFilePath)
 {
+	AssetMetaData newMetaData;
+
+	// Open File
+	File metaDataFile;
+	if (!metaDataFile.Open(metaDataFilePath, File::READ))
+	{
+		return false;
+	}
+
+	if (!mAssetMetaDataParser.ReadMetaDataFromFile(metaDataFile, newMetaData))
+	{
+		return false;
+	}
+
+	// Check if we already have this
+	if (mAssetMetaData.count(newMetaData.AssetFilePath) >= 1)
+	{
+		return false;
+	}
+
+	mAssetMetaData[newMetaData.AssetFilePath] = newMetaData;
+
 	return true;
 }
+
+//------------------------------------------//
+// AssetDatabase::DoesAssetExist				
+//------------------------------------------//
+bool AssetDatabase::DoesAssetExist(const std::string& assetPath)
+{
+	return mAssetMetaData.count(assetPath) >= 1;
+}
+
+//------------------------------------------//
+// AssetDatabase::GetAssetMetaData				
+//------------------------------------------//
+bool AssetDatabase::GetAssetMetaData(const std::string& assetPath, AssetMetaData& assetMetaData)
+{
+	if (mAssetMetaData.count(assetPath) <= 0)
+	{
+		return false;
+	}
+
+	assetMetaData = mAssetMetaData[assetPath];
+
+	return true;
+}
+

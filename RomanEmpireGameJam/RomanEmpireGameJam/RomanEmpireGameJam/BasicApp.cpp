@@ -38,12 +38,14 @@ bool BasicApp::Initialize()
 
 	RenderingSystem::RendererInfo renderingInfo;
 	renderingInfo.RenderFlags = RenderingSystem::RendererFlags::HARDWARE_RENDERED;
+	
+	//Change this to use just base colour
 	for (int i = 0; i < 4; ++i)
 	{
 		renderingInfo.RenderDrawColour[i] = 0xFF;
 	}
 
-	if (!mRenderingSystem->CreateSystem(mWindow, renderingInfo))
+	if (!mRenderingSystem->StartupSystem(mWindow, renderingInfo))
 	{
 		Log::GetLog().LogCriticalMsg("Failed to create rendering system");
 		return false;
@@ -51,7 +53,8 @@ bool BasicApp::Initialize()
 
 	mAssetDatabase->DiscoverAssets();
 
-	if (!mAssetCacheCollection->InitilizeAssetCollection())
+	if (!mAssetCacheCollection->InitilizeAssetCollection(mRenderingSystem->GetRendererWeak(),
+		mAssetDatabase))
 	{
 		Log::GetLog().LogCriticalMsg("Failed to initialize the asset cache collection");
 		return false;
@@ -100,5 +103,4 @@ void BasicApp::Update()
 
 void BasicApp::Draw()
 {
-
 }

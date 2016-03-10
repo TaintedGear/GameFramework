@@ -26,13 +26,14 @@ public:
 	bool Write(const std::string& pWriteData);
 
 	//@Param: pReadData[out] = The read data retreived from file
-	bool Read(char* pReadData, int pStartPos, int pEndPos);
+	bool Read(char* pReadData, const int& pStartPos, const int& pEndPos);
+	bool ReadFileContents(std::string& contents);
+
+	bool GetLine(std::string& lineData);
 
 	const std::string GetFilepath() const;
 	const FileMode GetFilemode() const;
 	const bool IsOpen() const;
-
-
 
 private:
 	std::fstream mFile;

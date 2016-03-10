@@ -5,6 +5,9 @@
 #include "Log.h"
 #include "AssetCache.h"
 #include "AssetLoader.h"
+#include "AssetDatabase.h"
+
+#include "Renderer.h"
 
 // Holds all the asset cache's for the different types of asset types
 // Will create the loaders and add them to the appropriate cache of the same asset type
@@ -16,17 +19,21 @@ public:
 	virtual ~AssetCacheCollection();
 
 	// Can be overridden to include new loaders for asset types
-	virtual bool InitilizeAssetCollection();
+	virtual bool InitilizeAssetCollection(
+		std::weak_ptr<class Renderer> pRenderer,
+		std::shared_ptr<class AssetDatabase> assetDatabase);
 
 	template <class T>
 	bool CreateAssetCache( std::shared_ptr<AssetLoader<T>> assetLoader);
 
 	template <class T>
 	std::shared_ptr<T> GetAsset(const std::string& filepath);
-private:
 
+private:
 	// Type Hash, AssetCache Interface
 	std::map< size_t, std::unique_ptr<class IAssetCache> > mAssetCaches;
+
+	std::shared_ptr<class AssetDatabase> mAssetDatabase;
 };
 
 //------------------------------------------//
@@ -36,6 +43,12 @@ template <class T>
 bool AssetCacheCollection::CreateAssetCache(std::shared_ptr<AssetLoader<T>> assetLoader)
 {
 	static_assert(std::is_base_of<Asset, T>::value, "Trying to create an AssetCache that is not of base Asset");
+
+	if (mAssetDatabase == nullptr)
+	{
+		Log::GetLog().LogCriticalMsg("Asset Database was null when trying to create asset cache");
+		return false;
+	}
 
 	//Check if we already have this in our map
 	const std::type_index typeIndex = typeid(T);
@@ -59,7 +72,7 @@ bool AssetCacheCollection::CreateAssetCache(std::shared_ptr<AssetLoader<T>> asse
 	// Pass the loader into the asset cache to share a shared ptr of that object
 	// Create the AssetCache - which will create the asset Pool (Pass through Asset Finder helper?)
 	IAssetCache* newAssetCache = nullptr;
-	newAssetCache = new AssetCache<T>(assetLoader);
+	newAssetCache = new AssetCache<T>(assetLoader, mAssetDatabase);
 
 	// Store in the asset cache
 	mAssetCaches[typeIndex.hash_code()] = std::unique_ptr<IAssetCache>(newAssetCache);
@@ -93,6 +106,6 @@ AssetCacheCollection::GetAsset(const std::string& filepath)
 	}
 
 	//Cast to the type wanted by the GetAsset T
-	return std::static_pointer_cast<T>(mAssetCaches[typeIndex]->GetAsset(filepath));
+	return std::static_pointer_cast<T>(mAssetCaches[typeIndex.hash_code()]->GetAsset(filepath));
 }
 
