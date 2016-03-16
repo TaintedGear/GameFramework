@@ -10,16 +10,6 @@ public:
 
 	bool CheckFileExists(const std::string& pFilename);
 
-	//************************************
-	// Method:    GetAllFilesInFolder
-	// FullName:  FileManager::GetAllFilesInFolder
-	// Access:    public 
-	// Returns:   std::vector<std::string>
-	// Qualifier:
-	// Parameter: const std::string & pFolderName
-	// Parameter: bool bPropergate - Allows to go through sub folders and return those file names
-	// Parameter: bool & bResult
-	//************************************
 	std::vector<std::string> GetAllFilesInFolder(
 		const std::string& pFolderName,
 		bool bIncludeFolderpath,

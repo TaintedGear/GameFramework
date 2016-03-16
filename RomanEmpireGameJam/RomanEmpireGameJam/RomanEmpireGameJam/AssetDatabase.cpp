@@ -60,6 +60,7 @@ void AssetDatabase::DiscoverAssets()
 	}
 	
 	mAssetMetaData.size();
+	
 	// Simpler solution:
 	// Go through the meta data files check if the path to the file exists - if not then delete the MD
 	// If it does exist read the MD data in

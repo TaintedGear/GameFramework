@@ -3,9 +3,13 @@
 #include "Intrinsics.h"
 #include "Log.h"
 
+// For File::ReadFileContents
+#include <streambuf>
+
 File::File() :
-mFilepath(""),
-mFileMode(FileMode::READ)
+mFilepath("")
+,mFileExtension("")
+,mFileMode(FileMode::READ)
 {
 }
 
@@ -21,6 +25,12 @@ bool File::Open(const std::string& pFilepath, File::FileMode pFilemode)
 	
 	mFilepath = pFilepath;
 	mFileMode = pFilemode;
+	if (!FindFilepathExtension(pFilepath, mFileExtension))
+	{
+		//Couldn't ascertain file ext
+		return false;
+	}
+
 	mFile.open(pFilepath, pFilemode);
 	if (!mFile.is_open())
 	{
@@ -131,6 +141,14 @@ const std::string File::GetFilepath() const
 }
 
 //------------------------------------------//
+// File::GetFileExtension				
+//------------------------------------------//
+const std::string File::GetFileExtension() const
+{
+	return mFileExtension;
+}
+
+//------------------------------------------//
 // File::GetFilemode				
 //------------------------------------------//
 const File::FileMode File::GetFilemode() const
@@ -154,19 +172,57 @@ bool File::ReadFileContents(std::string& contents)
 	// THIS IS UNSAFE 
 	if (mFile)
 	{
-		//Get to the correct position in the file 
-		mFile.seekg(0, 0);
-		
-		while (!mFile.eof())
+		if (File::IsOpen())
 		{
-			std::string line = "";
-			getline(mFile, line);
+			//Bit flag this
+			if (mFileMode == 
+				READ_WRITE || READ || READ_WRITE_APPEND || READ_WRITE_NEW)
+			{
+				//Allocate the space for the string
+				contents.clear();
+				//Go to EOF
+				mFile.seekg(0, std::ios::end);
+				contents.reserve((std::size_t)mFile.tellg());
+				mFile.seekg(0, std::ios::beg);
 
-			contents += line;
+				//Copy contents over to the string
+				contents.assign((std::istreambuf_iterator<char>(mFile)),
+					std::istreambuf_iterator<char>());
+			}
 		}
-
-		return true;
 	}
 
 	return false;
+}
+
+//------------------------------------------//
+// File::FindFilepathExtension				
+//------------------------------------------//
+bool File::FindFilepathExtension(const std::string& filepath, std::string& fileExt)
+{
+	if (filepath.size() <= 0)
+	{
+		//String is empty
+		return false;
+	}
+
+	//Find the last '.'
+	std::size_t endPos = filepath.find_last_of('.');
+
+	if (endPos == std::string::npos)
+	{
+		//Failed to find the last '.'
+		return false;
+	}
+
+	int extLen = (int)filepath.size() - (int)endPos;
+	if (extLen <= 0)
+	{
+		//Ext length was too small
+		return false;
+	}
+
+	fileExt = filepath.substr(endPos, extLen);
+
+	return true;
 }
