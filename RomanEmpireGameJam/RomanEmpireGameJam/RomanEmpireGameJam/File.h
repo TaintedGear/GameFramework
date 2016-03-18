@@ -19,7 +19,7 @@ public:
 	File();
 	~File();
 
-	bool Open(const std::string& pFilepath, FileMode pFilemode);
+	bool Open(const std::string& pFilepath, FileMode pFilemode = File::READ_WRITE_APPEND);
 	void Close();
 
 	bool Write(const char* pWriteData);

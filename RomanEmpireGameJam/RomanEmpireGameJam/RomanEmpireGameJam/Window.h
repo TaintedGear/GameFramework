@@ -24,7 +24,7 @@ public:
 	Window();
 	virtual ~Window();
 
-	bool CreateWindow(const WindowInfo& pWindowInfo);
+	bool CreateNewWindow(const WindowInfo& pWindowInfo);
 	void DestroyWindow();
 
 	WindowInfo GetWindowInfo();

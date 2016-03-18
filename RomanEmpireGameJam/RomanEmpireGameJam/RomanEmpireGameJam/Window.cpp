@@ -14,7 +14,7 @@ Window::~Window()
 	}
 }
 
-bool Window::CreateWindow(const WindowInfo& pWindowInfo)
+bool Window::CreateNewWindow(const WindowInfo& pWindowInfo)
 {
 	bool retVal = false;
 

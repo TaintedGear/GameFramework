@@ -1,4 +1,4 @@
-#include "XMLElement.h"
+#include "XMLParser.h"
 
 //------------------------------------------//
 // XMLElement::XMLElement				
@@ -13,7 +13,10 @@ mNode(node)
 //------------------------------------------//
 void XMLElement::AddAttribute(XMLAttribute& newAttribute)
 {
-	mNode->insert_attribute(0, newAttribute.GetRapidXMLAttribute());
+	if (mNode != nullptr)
+	{
+		mNode->insert_attribute(0, newAttribute.GetRapidXMLAttribute());
+	}
 }
 
 //------------------------------------------//
@@ -21,7 +24,18 @@ void XMLElement::AddAttribute(XMLAttribute& newAttribute)
 //------------------------------------------//
 void XMLElement::AppendAttribute(XMLAttribute& appendAttribute)
 {
-	mNode->append_attribute(appendAttribute.GetRapidXMLAttribute());
+	if (mNode != nullptr)
+	{
+		mNode->append_attribute(appendAttribute.GetRapidXMLAttribute());
+	}
+}
+
+//------------------------------------------//
+// XMLElement::GetName				
+//------------------------------------------//
+const std::string XMLElement::GetName() const
+{
+	return mNode != nullptr ? mNode->name() : "";
 }
 
 //------------------------------------------//
@@ -29,32 +43,64 @@ void XMLElement::AppendAttribute(XMLAttribute& appendAttribute)
 //------------------------------------------//
 const std::string XMLElement::GetValue() const
 {
-	return mNode->value();
+	return mNode != nullptr ? mNode->value() : "Null";
 }
 
 //------------------------------------------//
 // XMLElement::GetChildElement				
 //------------------------------------------//
-XMLElement XMLElement::GetChildElement(const std::string& childElementTag) const
+XMLElement XMLElement::GetFirstChildElement() const
 {
-	if (mNode != nullptr)
-	{
-		XMLElement childElement = mNode->first_node(childElementTag.c_str());
-	}
-	else
-	{
-		//log
-	}
+	XMLElement childElement = mNode->first_node();
+
+	return childElement;
 }
 
 //------------------------------------------//
-// XMLElement::GetAttribute				
+// XMLElement::GetLastChildElement				
 //------------------------------------------//
-XMLAttribute XMLElement::GetAttribute(const std::string& attributeTag)
+XMLElement XMLElement::GetLastChildElement() const
 {
-	XMLAttribute xmlAttribute(mNode->first_attribute(attributeTag.c_str()));
+	XMLElement childElement = mNode->last_node();
+
+	return childElement;
+}
+
+//------------------------------------------//
+// XMLElement::GetFirstAttribute				
+//------------------------------------------//
+XMLAttribute XMLElement::GetFirstAttribute() const
+{
+	XMLAttribute xmlAttribute(mNode->first_attribute());
 
 	return xmlAttribute;
+}
+
+//------------------------------------------//
+// XMLElement::GetLastAttribute				
+//------------------------------------------//
+XMLAttribute XMLElement::GetLastAttribute() const
+{
+	XMLAttribute xmlAttribute(mNode->last_attribute());
+
+	return xmlAttribute;
+}
+
+//------------------------------------------//
+// XMLElement::GetAllAttributes				
+//------------------------------------------//
+std::vector<XMLAttribute> XMLElement::GetAllAttributes() const
+{
+	std::vector<XMLAttribute> attributeVec;
+
+	for (rapidxml::xml_attribute<>* attr = mNode->first_attribute();
+		attr != nullptr;
+		attr = attr->next_attribute())
+	{
+		attributeVec.push_back(XMLAttribute(attr));
+	}
+
+	return attributeVec;
 }
 
 //------------------------------------------//

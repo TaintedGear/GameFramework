@@ -30,7 +30,7 @@ bool BasicApp::Initialize()
 	windowInfo.windowTitle = "The Legion";
 	windowInfo.windowFlags = Window::WindowFlags::RESIZABLE_WINDOW;
 
-	if (!mWindow->CreateWindow(windowInfo))
+	if (!mWindow->CreateNewWindow(windowInfo))
 	{
 		Log::GetLog().LogCriticalMsg("Failed to create window");
 		return false;

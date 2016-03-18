@@ -93,8 +93,6 @@
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="World.h" />
-    <ClInclude Include="XMLAttribute.h" />
-    <ClInclude Include="XMLElement.h" />
     <ClInclude Include="XMLParser.h" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +139,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)Additional\Include\rapidxml-1.13;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

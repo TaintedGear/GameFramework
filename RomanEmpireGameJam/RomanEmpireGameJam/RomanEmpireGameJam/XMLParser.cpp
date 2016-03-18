@@ -1,7 +1,5 @@
 #include "XMLParser.h"
 
-
-
 XMLParser::XMLParser()
 {
 }
@@ -16,7 +14,7 @@ XMLParser::~XMLParser()
 bool XMLParser::Parse(File& xmlFile)
 {
 	//Check if the file is an XML File
-	if (xmlFile.GetFileExtension() != "xml")
+	if (xmlFile.GetFileExtension() != ".xml")
 	{
 		//Not of ext 'XML'
 		return false;
@@ -26,30 +24,43 @@ bool XMLParser::Parse(File& xmlFile)
 	mDOMTree.clear();
 
 	//Read file contents
-	std::string fileContents = "";
-	if (!xmlFile.ReadFileContents(fileContents))
+	mContents = "";
+	if (!xmlFile.ReadFileContents(mContents))
 	{
 		//Failed to read file contents
 		return false;
 	}
 
-	//Parse 
-	mDOMTree.parse<0>(&fileContents[0]);
+	//Parse - Without Exceptions
+	mDOMTree.parse<0>(&mContents[0]);
 
 	// - DEBUG
 	//rapidxml::parse_error::what();
 	//rapidxml::parse_error::where();
+
+	return true;
 }
 
 //------------------------------------------//
 // XMLParser::GetElement				
 //------------------------------------------//
-XMLElement XMLParser::GetElement(const std::string& elementTag)
+XMLElement XMLParser::GetFirstElement()
 {
-	rapidxml::xml_node<>* node = mDOMTree.first_node(elementTag.c_str());
+	rapidxml::xml_node<>* node = mDOMTree.first_node();
 
 	XMLElement xmlElement(node);
 
 	return xmlElement;
 }
 
+//------------------------------------------//
+// XMLParser::GetLastElement				
+//------------------------------------------//
+class XMLElement XMLParser::GetLastElement()
+{
+	rapidxml::xml_node<>* node = mDOMTree.last_node();
+
+	XMLElement xmlElement(node);
+
+	return xmlElement;
+}

@@ -186,8 +186,11 @@ bool File::ReadFileContents(std::string& contents)
 				mFile.seekg(0, std::ios::beg);
 
 				//Copy contents over to the string
-				contents.assign((std::istreambuf_iterator<char>(mFile)),
-					std::istreambuf_iterator<char>());
+				contents.assign(
+					(std::istreambuf_iterator<char>(mFile)),
+					(std::istreambuf_iterator<char>()));
+
+				return true;
 			}
 		}
 	}

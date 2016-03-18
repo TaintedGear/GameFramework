@@ -1,4 +1,4 @@
-#include "XMLAttribute.h"
+#include "XMLParser.h"
 
 //------------------------------------------//
 // XMLAttribute::XMLAttribute				
@@ -11,17 +11,17 @@ mAttribute(attribute)
 //------------------------------------------//
 // XMLAttribute::GetName				
 //------------------------------------------//
-const std::string& XMLAttribute::GetName() const
+const std::string XMLAttribute::GetName() const
 {
-	return mAttribute->name();
+	return mAttribute != nullptr ? mAttribute->name() : "Null";
 }
 
 //------------------------------------------//
 // XMLAttribute::GetValue				
 //------------------------------------------//
-const std::string& XMLAttribute::GetValue() const
+const std::string XMLAttribute::GetValue() const
 {
-	return mAttribute->value();
+	return mAttribute != nullptr ? mAttribute->value() : "Null";
 }
 
 //------------------------------------------//
@@ -38,8 +38,8 @@ XMLAttribute XMLAttribute::GetNextAttribute()
 //------------------------------------------//
 XMLAttribute XMLAttribute::GetPreviousAttribute()
 {
-	XMLAttribute nextAttribute(mAttribute->previous_attribute());
-	return nextAttribute;
+	XMLAttribute prevAttribute(mAttribute->previous_attribute());
+	return prevAttribute;
 }
 
 //------------------------------------------//
