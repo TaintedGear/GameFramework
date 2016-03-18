@@ -1,4 +1,5 @@
 #include "XMLParser.h"
+#include "Log.h"
 
 //------------------------------------------//
 // XMLElement::XMLElement				
@@ -28,6 +29,40 @@ void XMLElement::AppendAttribute(XMLAttribute& appendAttribute)
 	{
 		mNode->append_attribute(appendAttribute.GetRapidXMLAttribute());
 	}
+}
+
+//------------------------------------------//
+// XMLElement::CreateChildElement				
+//------------------------------------------//
+XMLElement XMLElement::CreateChildElement(const std::string& elementName /*= ""*/, const std::string elementValue /*= ""*/)
+{
+	if (mNode != nullptr)
+	{
+		rapidxml::xml_document<>* parentDoc = mNode->document();
+		if (parentDoc != nullptr)
+		{
+			rapidxml::xml_node<>* newNode = nullptr;
+
+			//Allocate strings
+			char* name = parentDoc->allocate_string(elementName.c_str(), elementName.size());
+			char* value = parentDoc->allocate_string(elementValue.c_str(), elementValue.size());
+
+			newNode = parentDoc->allocate_node(
+				rapidxml::node_element,
+				name,
+				value,
+				elementName.size(),
+				elementValue.size());
+
+			mNode->insert_node(0, newNode);
+
+			XMLElement newElement(newNode);
+			return newElement;
+		}
+	}
+
+	Log::GetLog().LogCriticalMsg("Failed to create child node");
+	return XMLElement(nullptr);
 }
 
 //------------------------------------------//
@@ -106,23 +141,53 @@ std::vector<XMLAttribute> XMLElement::GetAllAttributes() const
 //------------------------------------------//
 // XMLElement::SetValue				
 //------------------------------------------//
-void XMLElement::SetValue(const std::string& elementValue)
+bool XMLElement::SetName(const std::string& elementName)
+{
+	if (mNode != nullptr)
+	{
+		if (elementName.size() > 0)
+		{
+			//Allocate the string
+			if (mNode->document() != nullptr)
+			{
+				char* newName = mNode->document()->allocate_string(
+					elementName.c_str(),
+					elementName.size());
+
+				mNode->name(newName, elementName.size());
+
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+//------------------------------------------//
+// XMLElement::SetValue				
+//------------------------------------------//
+bool XMLElement::SetValue(const std::string& elementValue)
 {
 	if (mNode != nullptr)
 	{
 		if (elementValue.size() > 0)
 		{
-			mNode->value(&elementValue[0], elementValue.size());
-		}
-		else
-		{
-			//Log
+			//Allocate the string
+			if (mNode->document() != nullptr)
+			{
+				char* newVal = mNode->document()->allocate_string(
+					elementValue.c_str(),
+					elementValue.size());
+
+				mNode->value(newVal, elementValue.size());
+
+				return true;
+			}
 		}
 	}
-	else
-	{
-		//Log
-	}
+
+	return false;
 }
 
 //------------------------------------------//

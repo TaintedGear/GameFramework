@@ -2,6 +2,7 @@
 
 #include "File.h"
 #include "rapidxml.hpp"
+#include "rapidxml_print.hpp"
 
 //XMLAttribute
 class XMLAttribute
@@ -31,6 +32,10 @@ public:
 	void AddAttribute(class XMLAttribute& newAttribute);
 	void AppendAttribute(class XMLAttribute& appendAttribute);
 
+	XMLElement CreateChildElement(
+		const std::string& elementName = "",
+		const std::string elementValue = "");
+
 	const std::string GetName() const;
 	const std::string GetValue() const;
 	XMLElement GetFirstChildElement() const;
@@ -39,7 +44,8 @@ public:
 	class XMLAttribute GetLastAttribute() const;
 	class std::vector<class XMLAttribute> GetAllAttributes() const;
 
-	void SetValue(const std::string& elementValue);
+	bool SetName(const std::string& elementName);
+	bool SetValue(const std::string& elementValue);
 
 	class rapidxml::xml_node<>* GetRapidXMLNode();
 private:
@@ -55,11 +61,19 @@ public:
 
 	bool Parse(class File& xmlFile);
 	class XMLElement GetFirstElement();
-	//class XMLElement FindFirstElementWithTag(const std::string& elementTag);
 	class XMLElement GetLastElement();
+	
+	class XMLElement CreateNewElement(
+		const std::string& elementName = "",
+		const std::string elementValue = "",
+		bool autoInsert = true);
+
+	bool InsertElement(class XMLElement& element);
+
+	const std::string GetContents() const;
 
 private:
 	class rapidxml::xml_document<> mDOMTree;
-	std::string mContents;
+	//std::string mContents;
 };
 

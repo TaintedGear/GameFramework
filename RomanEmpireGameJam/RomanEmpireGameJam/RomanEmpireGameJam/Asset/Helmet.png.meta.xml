@@ -1,7 +1,6 @@
-<Asset>
-	<Type>Texture2D</Type>
+<Name>
 	<Name>Helmet</Name>
+	<Type>Texture2D</Type>
 	<Path>Helmet.png</Path>
-	<Attributes>
-	</Attributes>
-</Asset>
+</Name>
+

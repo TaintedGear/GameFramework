@@ -1,7 +1,6 @@
-<Asset>
-	<Type>Texture2D</Type>
+<Name>
 	<Name>Fighter2</Name>
+	<Type>Texture2D</Type>
 	<Path>Fighter2.png</Path>
-	<Attributes>
-	</Attributes>
-</Asset>
+</Name>
+

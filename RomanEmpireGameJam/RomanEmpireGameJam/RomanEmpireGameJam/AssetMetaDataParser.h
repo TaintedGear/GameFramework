@@ -3,6 +3,7 @@
 #include "Asset.h"
 #include "AssetFileTypeExtensions.h"
 
+
 class AssetMetaDataParser
 {
 public:

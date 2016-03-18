@@ -2,7 +2,7 @@
 #include "FileHelper.h"
 #include "FilePaths.h"
 #include "Log.h"
-
+#include "XMLParser.h"
 
 // <%s> Tag names
 const std::string AssetMetaDataParser::ASSET_TAG = "Asset";
@@ -86,7 +86,6 @@ bool AssetMetaDataParser::CreateMetaData(const std::string& assetFilePath, struc
 	const std::string filepath = assetFilePath.substr(pathLength);
 
 	//From extension create default attributes - TODO
-
 	AssetMetaData newMetaData;
 	newMetaData.AssetTypeHash = typeHash;
 	newMetaData.AssetName = filename;
@@ -116,23 +115,43 @@ class File& metaDataFile,
 		return false;
 	}
 
-	//Write <Asset>
-	metaDataFile.Write(Tab() + "<" + ASSET_TAG + ">\n");
-	AddTabLevel();
+	//Begin the XML parsing
+	XMLParser parser;
+	parser.Parse(metaDataFile);
 
-	//Write common data
-	if (!WriteCommonMetaData(metaDataFile, metaData))
+	XMLElement baseElement = parser.CreateNewElement(ASSET_NAME_TAG);
+	baseElement.CreateChildElement(ASSET_NAME_TAG, metaData.AssetName);
+	
+	//Determine readable name from TypeHash
+	std::string assetType = "Invalid";
+	if (!mAssetFileTypeExtensions->HashIsOfAssetTypeName(metaData.AssetTypeHash, assetType))
 	{
-		//Log
-		return false;
+		//Log that we cant determine type
 	}
 
-	//Determine Attributes on T or type_index?
+	baseElement.CreateChildElement(ASSET_TYPE_TAG, assetType);
+	baseElement.CreateChildElement(ASSET_PATH_TAG, metaData.AssetFilePath);
+
+	metaDataFile.Write(parser.GetContents());
+
+	// I WANT TO MEASURE TIME FRAME - THATS WHY COMMENTED CODE IS STAYing
+	////Write <Asset>
+	//metaDataFile.Write(Tab() + "<" + ASSET_TAG + ">\n");
+	//AddTabLevel();
+
+	////Write common data
+	//if (!WriteCommonMetaData(metaDataFile, metaData))
+	//{
+	//	//Log
+	//	return false;
+	//}
+
+	////Determine Attributes on T or type_index?
 
 
-	//Write </Asset>
-	RemoveTabLevel();
-	metaDataFile.Write(Tab() + "</" + ASSET_TAG + ">\n");
+	////Write </Asset>
+	//RemoveTabLevel();
+	//metaDataFile.Write(Tab() + "</" + ASSET_TAG + ">\n");
 
 	return true;
 }

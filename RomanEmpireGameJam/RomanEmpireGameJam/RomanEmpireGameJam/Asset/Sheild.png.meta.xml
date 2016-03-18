@@ -1,7 +1,6 @@
-<Asset>
-	<Type>Texture2D</Type>
+<Name>
 	<Name>Sheild</Name>
+	<Type>Texture2D</Type>
 	<Path>Sheild.png</Path>
-	<Attributes>
-	</Attributes>
-</Asset>
+</Name>
+
