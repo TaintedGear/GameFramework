@@ -1,7 +1,6 @@
 <Asset>
-	<Type>Texture2D</Type>
 	<Name>System/InvalidAsset</Name>
+	<Type>Texture2D</Type>
 	<Path>System/InvalidAsset.png</Path>
-	<Attributes>
-	</Attributes>
 </Asset>
+

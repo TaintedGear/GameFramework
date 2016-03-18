@@ -119,7 +119,7 @@ class File& metaDataFile,
 	XMLParser parser;
 	parser.Parse(metaDataFile);
 
-	XMLElement baseElement = parser.CreateNewElement(ASSET_NAME_TAG);
+	XMLElement baseElement = parser.CreateNewElement(ASSET_TAG);
 	baseElement.CreateChildElement(ASSET_NAME_TAG, metaData.AssetName);
 	
 	//Determine readable name from TypeHash
