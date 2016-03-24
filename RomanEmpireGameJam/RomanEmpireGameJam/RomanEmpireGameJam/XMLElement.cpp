@@ -34,7 +34,7 @@ void XMLElement::AppendAttribute(XMLAttribute& appendAttribute)
 //------------------------------------------//
 // XMLElement::CreateChildElement				
 //------------------------------------------//
-XMLElement XMLElement::CreateChildElement(const std::string& elementName /*= ""*/, const std::string elementValue /*= ""*/)
+XMLElement XMLElement::CreateChildElement(const std::string& elementName /*= ""*/, const std::string& elementValue /*= ""*/)
 {
 	if (mNode != nullptr)
 	{
@@ -86,7 +86,7 @@ const std::string XMLElement::GetValue() const
 //------------------------------------------//
 XMLElement XMLElement::GetFirstChildElement() const
 {
-	XMLElement childElement = mNode->first_node();
+	XMLElement childElement(mNode->first_node());
 
 	return childElement;
 }
@@ -96,7 +96,7 @@ XMLElement XMLElement::GetFirstChildElement() const
 //------------------------------------------//
 XMLElement XMLElement::GetLastChildElement() const
 {
-	XMLElement childElement = mNode->last_node();
+	XMLElement childElement(mNode->last_node());
 
 	return childElement;
 }
@@ -109,6 +109,34 @@ XMLAttribute XMLElement::GetFirstAttribute() const
 	XMLAttribute xmlAttribute(mNode->first_attribute());
 
 	return xmlAttribute;
+}
+
+//------------------------------------------//
+// XMLElement::GetAllChildElements				
+//------------------------------------------//
+bool XMLElement::GetAllChildElements(std::vector<XMLElement>& childElements)
+{
+	if (mNode == nullptr)
+	{
+		return false;
+	}
+
+	for (rapidxml::xml_node<>* child = mNode->first_node();
+		child != nullptr;
+		child = child->next_sibling())
+	{
+		childElements.push_back(XMLElement(child));
+	}
+
+	return true;
+}
+
+//------------------------------------------//
+// XMLElement::GetSiblingElement				
+//------------------------------------------//
+XMLElement XMLElement::GetSiblingElement() const
+{
+	return XMLElement(mNode->next_sibling());
 }
 
 //------------------------------------------//
@@ -214,4 +242,12 @@ void XMLElement::AddChildElement(XMLElement& childElement)
 rapidxml::xml_node<>* XMLElement::GetRapidXMLNode()
 {
 	return mNode;
+}
+
+//------------------------------------------//
+// XMLElement::IsValid				
+//------------------------------------------//
+bool XMLElement::IsValid() const
+{
+	return mNode != nullptr;
 }

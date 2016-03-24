@@ -59,6 +59,7 @@
     <ClInclude Include="AssetCache.h" />
     <ClInclude Include="AssetCacheCollection.h" />
     <ClInclude Include="AssetDatabase.h" />
+    <ClInclude Include="AssetDefaultAttributes.h" />
     <ClInclude Include="AssetFileTypeExtensions.h" />
     <ClInclude Include="AssetLoader.h" />
     <ClInclude Include="AssetMetaData.h" />

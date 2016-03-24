@@ -1,8 +1,10 @@
 #include "AssetMetaDataParser.h"
 #include "FileHelper.h"
 #include "FilePaths.h"
+#include "Intrinsics.h"
 #include "Log.h"
 #include "XMLParser.h"
+#include "AssetDefaultAttributes.h"
 
 // <%s> Tag names
 const std::string AssetMetaDataParser::ASSET_TAG = "Asset";
@@ -10,6 +12,8 @@ const std::string AssetMetaDataParser::ASSET_NAME_TAG = "Name";
 const std::string AssetMetaDataParser::ASSET_TYPE_TAG = "Type";
 const std::string AssetMetaDataParser::ASSET_PATH_TAG = "Path";
 const std::string AssetMetaDataParser::ASSET_ATTRIBUTE_TAG = "Attributes";
+const std::string AssetMetaDataParser::ASSET_SCALAR_ATTRIBUTE_TAG = "Scalar";
+const std::string AssetMetaDataParser::ASSET_VECTOR_ATTRIBUTE_TAG = "Vector";
 
 //------------------------------------------//
 // AssetMetaDataParser::AssetMetaDataParser				
@@ -117,7 +121,10 @@ class File& metaDataFile,
 
 	//Begin the XML parsing
 	XMLParser parser;
-	parser.Parse(metaDataFile);
+	if (!parser.Parse(metaDataFile))
+	{
+		return false;
+	}
 
 	XMLElement baseElement = parser.CreateNewElement(ASSET_TAG);
 	baseElement.CreateChildElement(ASSET_NAME_TAG, metaData.AssetName);
@@ -132,6 +139,17 @@ class File& metaDataFile,
 	baseElement.CreateChildElement(ASSET_TYPE_TAG, assetType);
 	baseElement.CreateChildElement(ASSET_PATH_TAG, metaData.AssetFilePath);
 
+	XMLElement attrElement = baseElement.CreateChildElement(ASSET_ATTRIBUTE_TAG);
+	XMLElement scalarAttrElement = attrElement.CreateChildElement(ASSET_SCALAR_ATTRIBUTE_TAG);
+	XMLElement vectorAttrElement = attrElement.CreateChildElement(ASSET_VECTOR_ATTRIBUTE_TAG);
+
+	AssetScalarAttributeContainer& container = AssetDefaultAttributes<Texture2D>::DefaultScalarAttributes;
+	for each (AssetScalarAttribute scalarAttr in container)
+	{
+		scalarAttrElement.CreateChildElement(scalarAttr.AttributeName, ToString(scalarAttr.AttributeValue));
+	}
+
+	//Write the contents of the XML Tree to file
 	metaDataFile.Write(parser.GetContents());
 
 	// I WANT TO MEASURE TIME FRAME - THATS WHY COMMENTED CODE IS STAYing
@@ -169,73 +187,127 @@ bool AssetMetaDataParser::ReadMetaDataFromFile(
 		return false;
 	}
 
-	//Read everything between <Asset> and </Asset>
-	// AssetTypeName
-	// AssetName
-	// AssetPath
-	// Attributes
-	// Read <%s>%s</%s>
-	// (Read everything) get the key value <%k> %v </%k> - store into map - then process
+	XMLParser xmlParser;
 
-	//HARD CODED FOR NWO UNTIL I CAN THINK OF AN ELEGANT SOLOUTION - Just wanna start building a game
-	std::string fileContents;
-	if (!metaDataFile.ReadFileContents(fileContents))
+	if (!xmlParser.Parse(metaDataFile))
 	{
 		return false;
 	}
 
-	if (fileContents.length() <= 0)
+	XMLElement baseElement = xmlParser.GetFirstElement();
+	if (!baseElement.IsValid())
+	{
+		return false;
+	}
+	// Check if the base is of <Asset>
+	if (baseElement.GetName() != ASSET_TAG)
+	{
+		return false;
+	}
+	//Get all the child elements
+	std::vector<XMLElement> childElements;
+	if (!baseElement.GetAllChildElements(childElements))
 	{
 		return false;
 	}
 
-	std::size_t keyStartPos = 0;
-	std::size_t keyEndPos = 0;
-
-	std::string type = "";
-	std::string name = "";
-	std::string path = "";
-
-	keyStartPos = fileContents.find("<Type>") + 6;
-	keyEndPos = fileContents.find("</Type>");
-
-	if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
+	for each (XMLElement ele in childElements)
 	{
-		type = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
-	}
-	
-	keyStartPos = fileContents.find("<Name>") + 6;
-	keyEndPos = fileContents.find("</Name>");
+		//Get the Asset Name
+		if (ele.GetName() == ASSET_NAME_TAG)
+		{
+			metaData.AssetName = ele.GetValue();
+		} 
+		//Get the Asset Filepath
+		if (ele.GetName() == ASSET_PATH_TAG)
+		{
+			metaData.AssetFilePath = ele.GetValue();
+		}
 
-	if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
-	{
-		name = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
-	}
+		//Get the Asset Type
+		if (ele.GetName() == ASSET_TYPE_TAG)
+		{
+			// Determine type hash
+			std::size_t typeHash = 0;
+			if (!mAssetFileTypeExtensions->AssetTypeNameIsOfHash(
+				ele.GetValue(),
+				typeHash))
+			{
+				return false;
+			}
 
-	keyStartPos = fileContents.find("<Path>") + 6;
-	keyEndPos = fileContents.find("</Path>");
-
-	if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
-	{
-		path = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
+			metaData.AssetTypeHash = typeHash;
+		}
 	}
 
-	// Determine type hash
-	std::size_t typeHash = 0;
-	if (!mAssetFileTypeExtensions->AssetTypeNameIsOfHash(type, typeHash))
-	{
-		return false;
-	}
 
-	if (typeHash == 0)
-	{
-		return false;
-	}
+	////Read everything between <Asset> and </Asset>
+	//// AssetTypeName
+	//// AssetName
+	//// AssetPath
+	//// Attributes
+	//// Read <%s>%s</%s>
+	//// (Read everything) get the key value <%k> %v </%k> - store into map - then process
 
-	//Fill out info
-	metaData.AssetTypeHash = typeHash;
-	metaData.AssetName = name;
-	metaData.AssetFilePath = path;
+	////HARD CODED FOR NWO UNTIL I CAN THINK OF AN ELEGANT SOLOUTION - Just wanna start building a game
+	//std::string fileContents;
+	//if (!metaDataFile.ReadFileContents(fileContents))
+	//{
+	//	return false;
+	//}
+
+	//if (fileContents.length() <= 0)
+	//{
+	//	return false;
+	//}
+
+	//std::size_t keyStartPos = 0;
+	//std::size_t keyEndPos = 0;
+
+	//std::string type = "";
+	//std::string name = "";
+	//std::string path = "";
+
+	//keyStartPos = fileContents.find("<Type>") + 6;
+	//keyEndPos = fileContents.find("</Type>");
+
+	//if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
+	//{
+	//	type = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
+	//}
+	//
+	//keyStartPos = fileContents.find("<Name>") + 6;
+	//keyEndPos = fileContents.find("</Name>");
+
+	//if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
+	//{
+	//	name = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
+	//}
+
+	//keyStartPos = fileContents.find("<Path>") + 6;
+	//keyEndPos = fileContents.find("</Path>");
+
+	//if (keyStartPos != std::string::npos && keyEndPos != std::string::npos)
+	//{
+	//	path = fileContents.substr(keyStartPos, (keyEndPos - keyStartPos));
+	//}
+
+	//// Determine type hash
+	//std::size_t typeHash = 0;
+	//if (!mAssetFileTypeExtensions->AssetTypeNameIsOfHash(type, typeHash))
+	//{
+	//	return false;
+	//}
+
+	//if (typeHash == 0)
+	//{
+	//	return false;
+	//}
+
+	////Fill out info
+	//metaData.AssetTypeHash = typeHash;
+	//metaData.AssetName = name;
+	//metaData.AssetFilePath = path;
 
 	return true;
 }

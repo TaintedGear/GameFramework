@@ -34,18 +34,25 @@ public:
 
 	XMLElement CreateChildElement(
 		const std::string& elementName = "",
-		const std::string elementValue = "");
+		const std::string& elementValue = "");
 
 	const std::string GetName() const;
 	const std::string GetValue() const;
+
 	XMLElement GetFirstChildElement() const;
+	bool GetAllChildElements(std::vector<XMLElement>& childElements);
 	XMLElement GetLastChildElement() const;
+
+	XMLElement GetSiblingElement() const;
+
 	class XMLAttribute GetFirstAttribute() const;
 	class XMLAttribute GetLastAttribute() const;
-	class std::vector<class XMLAttribute> GetAllAttributes() const;
+	std::vector<class XMLAttribute> GetAllAttributes() const;
 
 	bool SetName(const std::string& elementName);
 	bool SetValue(const std::string& elementValue);
+
+	bool IsValid() const;
 
 	class rapidxml::xml_node<>* GetRapidXMLNode();
 private:

@@ -2,5 +2,14 @@
 	<Name>Sheild</Name>
 	<Type>Texture2D</Type>
 	<Path>Sheild.png</Path>
+	<Attributes>
+		<Scalar>
+			<Come>1.000000</Come>
+			<At>5.000000</At>
+			<Me>10.000000</Me>
+			<Bro>0.000000</Bro>
+		</Scalar>
+		<Vector/>
+	</Attributes>
 </Asset>
 

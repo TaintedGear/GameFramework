@@ -40,7 +40,9 @@ private:
 		ASSET_NAME_TAG,
 		ASSET_TYPE_TAG,
 		ASSET_PATH_TAG,
-		ASSET_ATTRIBUTE_TAG;
+		ASSET_ATTRIBUTE_TAG,
+		ASSET_SCALAR_ATTRIBUTE_TAG,
+		ASSET_VECTOR_ATTRIBUTE_TAG;
 
 	// Holds all the accepted file ext's for assets
 	std::unique_ptr<class AssetFileTypeExtensions> mAssetFileTypeExtensions;

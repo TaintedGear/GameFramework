@@ -3,6 +3,8 @@
 #include "Asset.h"
 #include "PCH.h"
 
+//Fillout the default attributes
+
 class Texture2D : public Asset
 {
 public:

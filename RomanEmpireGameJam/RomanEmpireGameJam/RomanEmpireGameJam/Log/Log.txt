@@ -1,3 +1,8 @@
 <---------------------------------------------------->
 Verbosity is set to Low
 <---------------------------------------------------->
+Critical: Created Renderer Successfully
+Low: C:/Users/jason/Desktop/GameFramework/GameFrameworkRepo/RomanEmpireGameJam/RomanEmpireGameJam/RomanEmpireGameJam/Asset/System/InvalidAsset.png Meta data file exists
+Critical: Asset type is invalid
+Critical: Asset type is invalid
+Critical: Asset type is invalid

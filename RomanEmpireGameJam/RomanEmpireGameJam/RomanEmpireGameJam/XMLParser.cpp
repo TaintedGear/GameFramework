@@ -24,23 +24,21 @@ bool XMLParser::Parse(File& xmlFile)
 	mDOMTree.clear();
 
 	//Read file contents
-	std::string mContents = "";
-	if (!xmlFile.ReadFileContents(mContents))
+	std::string contents = "";
+	if (!xmlFile.ReadFileContents(contents))
 	{
 		//Failed to read file contents
 		return false;
 	}
 
+	//Safeguard against non null-terminated strings - by adding it in
+	contents += '\0';
+
 	//Allocate the string
-	char* dataString = mDOMTree.allocate_string(mContents.c_str(), mContents.size());
+	char* dataString = mDOMTree.allocate_string(contents.c_str(), contents.size());
 
-	//Parse - Without Exceptions
-	//mDOMTree.parse<0>(&mContents[0]);
+	//Parse
 	mDOMTree.parse<0>(&dataString[0]);
-
-	// - DEBUG
-	//rapidxml::parse_error::what();
-	//rapidxml::parse_error::where();
 
 	return true;
 }
@@ -108,7 +106,9 @@ const std::string XMLParser::GetContents() const
 	//Get contets of the DOM tree
 	std::string contents = "";
 	rapidxml::print(std::back_inserter(contents), mDOMTree, 0);
-
+	
+	//Null terminate the string;
+	contents += '\0';
 	return contents;
 }
 

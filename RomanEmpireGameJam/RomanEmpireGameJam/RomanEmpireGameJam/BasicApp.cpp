@@ -1,11 +1,6 @@
 #include "BasicApp.h"
 #include "Log.h"
 
-////Testing
-//#include "File.h"
-//#include "FilePaths.h"
-//#include "XMLParser.h"
-
 //Create an instance for the application
 BasicApp appInstance;
 
@@ -79,22 +74,6 @@ bool BasicApp::Initialize()
 		Log::GetLog().LogCriticalMsg("Failed to create world");
 		return false;
 	}
-
-	//File testFile;
-	//testFile.Open(FilePaths::FILE_PATH_ASSETS() + "Testing.xml", File::READ_WRITE_NEW);
-	////testFile.Open(FilePaths::FILE_PATH_ASSETS() + "Test.xml");
-
-	//XMLParser parser;
-	//parser.Parse(testFile);
-
-	//XMLElement firstEle = parser.GetFirstElement();
-
-	//XMLElement newEle = parser.CreateNewElement("Asset");
-	//newEle.CreateChildElement("Type", "Texture2D");
-	//newEle.CreateChildElement("Name", "Shield");
-	//newEle.CreateChildElement("Path", "Shield.png");
-
-	//testFile.Write(parser.GetContents());
 
 	return true;
 }
